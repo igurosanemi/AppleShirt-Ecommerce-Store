@@ -4,7 +4,7 @@
 
 - **Frontend**: Next.js 14 (App Router, TypeScript, Tailwind) — runs on host at :3000
 - **Backend**: FastAPI (async, SQLAlchemy 2.0 + Alembic, Pydantic v2) — runs on host at :8000
-- **DB**: PostgreSQL — runs in Docker at :5432
+- **DB**: PostgreSQL — runs in Docker at host port **:5433** (5432 reserved by local Postgres)
 - **Cache/Sessions**: Redis — runs in Docker at :6379
 
 ## Folder Structure
@@ -64,9 +64,13 @@ error   → { "error": { "code", "message", "details"? } }
 Consistent on every endpoint, no exceptions.
 
 ### Auth Storage
-- Refresh token: httpOnly, Secure, SameSite=strict cookie
+- Refresh token: httpOnly cookie, `secure=True` in production / `False` in dev, `samesite="lax"`, path=`/api/v1/auth`
 - Access token: in memory on the frontend (never localStorage)
-- Refresh tokens rotated on every use, stored in Redis
+- Refresh tokens are opaque `secrets.token_urlsafe(32)` stored in Redis as `refresh:{token}` → user_id with TTL
+- Rotated on every use: old token deleted before new one issued
+
+### Password Hashing
+Use `bcrypt` directly (not passlib — incompatible with bcrypt 4.x on Python 3.13).
 
 ### CORS
 Backend (:8000) allows frontend origin (:3000) with `credentials: true`.
