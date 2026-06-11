@@ -7,7 +7,7 @@
 | 0 | Repo Scaffold | Done |
 | 1 | Backend Foundation | Done |
 | 2 | Auth | Done |
-| 3 | Catalog API | Not started |
+| 3 | Catalog API | Done |
 | 4 | Cart + Orders API | Not started |
 | 5 | Frontend Scaffold | Not started |
 | 6 | Frontend Auth Pages | Not started |
@@ -83,3 +83,30 @@
 - Rotation: old token deleted atomically before issuing new one.
 - Cookie: `httponly=True, secure=False in dev (no HTTPS locally), samesite="lax"`, scoped to `/api/v1/auth` path.
 - Rate limit: 5 req/60s per IP per endpoint using Redis INCR + EXPIRE.
+
+---
+
+## Phase 3 — Catalog API ✅
+
+**Status**: Done
+
+### Checklist
+- [x] `app/models/category.py` — Category model (id, name, slug, description, timestamps)
+- [x] `app/models/product.py` — Product model (price as integer cents, stock, FK to category, image_url, is_active)
+- [x] `app/models/__init__.py` — Category + Product registered for Alembic autogenerate
+- [x] `alembic/versions/*_add_categories_and_products_tables.py` — migration applied
+- [x] `app/schemas/catalog.py` — CategoryOut/Create/Update, ProductOut/Create/Update, PaginationMeta
+- [x] `app/services/catalog.py` — CRUD + list with filters/search/pagination, slug auto-generation
+- [x] `app/api/v1/catalog.py` — public reads + admin writes, standard response envelope
+- [x] `app/db/seed.py` — 4 categories, 14 realistic men's wear products seeded
+- [x] `frontend/public/images/products/` — directory structure created for Phase 5 images
+- [x] `tests/test_catalog.py` — 25 tests: list, filter, search, pagination, detail, admin CRUD, auth guards — all pass
+- [x] All 44 tests pass (19 auth + 25 catalog)
+
+### Notes
+- Price stored as integer cents throughout — never floats.
+- `lazy="raise"` on relationships prevents accidental N+1 queries; `selectinload` used explicitly in queries.
+- Category delete guarded: returns 409 if products exist under the category.
+- Search limited to 100 chars (`max_length=100` on Query param) to prevent abuse.
+- Product slug auto-generated from name via `_slugify()` if not supplied.
+- Seed is idempotent: skips if any category already exists.

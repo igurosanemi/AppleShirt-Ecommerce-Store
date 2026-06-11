@@ -102,3 +102,18 @@ uv run pytest tests/ -v
 alembic revision --autogenerate -m "description"
 alembic upgrade head
 ```
+
+## Seed Data
+```bash
+# From backend/ — idempotent, skips if categories already exist
+uv run python -m app.db.seed
+```
+
+## Catalog Notes
+- `Category` and `Product` models in `app/models/`
+- Relationships use `lazy="raise"` — always use `selectinload()` explicitly in service queries
+- Category delete returns 409 if products exist under it
+- Product price is always integer cents; slug auto-generated from name if not provided
+- Product images reference paths under `frontend/public/images/products/` (served by Next.js)
+- Public endpoints: `GET /api/v1/catalog/categories`, `GET /api/v1/catalog/products`, `GET /api/v1/catalog/products/{id}`
+- Admin endpoints: POST/PUT/DELETE on `/api/v1/catalog/categories` and `/api/v1/catalog/products` (require `is_admin=True`)
