@@ -109,6 +109,15 @@ alembic upgrade head
 uv run python -m app.db.seed
 ```
 
+## Cart + Orders Notes
+- Cart: Redis hash `cart:{user_id}` → `{product_id: quantity}`, TTL 7 days. Services in `app/services/cart.py`.
+- Checkout: `SELECT FOR UPDATE` on all product rows → validate all stock → decrement → create Order + OrderItems → commit → clear cart. All in one SQLAlchemy transaction.
+- `InsufficientStockError` in `app/services/order.py` carries product name, requested, and available quantities → HTTP 409.
+- Order items snapshot `name` and `unit_price` at purchase time. `product_id` is `ON DELETE SET NULL`.
+- Order list + detail are scoped to `current_user.id`. Wrong-user lookup returns 404 (not 403).
+- Cart endpoints: `GET/DELETE /api/v1/cart`, `POST/PUT/DELETE /api/v1/cart/items/{id}`
+- Order endpoints: `POST /api/v1/orders/checkout`, `GET /api/v1/orders`, `GET /api/v1/orders/{id}`
+
 ## Catalog Notes
 - `Category` and `Product` models in `app/models/`
 - Relationships use `lazy="raise"` — always use `selectinload()` explicitly in service queries

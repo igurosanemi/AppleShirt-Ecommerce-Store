@@ -8,7 +8,7 @@
 | 1 | Backend Foundation | Done |
 | 2 | Auth | Done |
 | 3 | Catalog API | Done |
-| 4 | Cart + Orders API | Not started |
+| 4 | Cart + Orders API | Done |
 | 5 | Frontend Scaffold | Not started |
 | 6 | Frontend Auth Pages | Not started |
 | 7 | Storefront | Not started |
@@ -110,3 +110,31 @@
 - Search limited to 100 chars (`max_length=100` on Query param) to prevent abuse.
 - Product slug auto-generated from name via `_slugify()` if not supplied.
 - Seed is idempotent: skips if any category already exists.
+
+---
+
+## Phase 4 — Cart + Orders API ✅
+
+**Status**: Done
+
+### Checklist
+- [x] `app/models/order.py` — Order + OrderItem models; price/total as integer cents; name snapshotted at purchase
+- [x] `alembic/versions/*_add_orders_and_order_items_tables.py` — migration applied
+- [x] `app/schemas/cart.py` — CartItemIn, CartItemQuantityUpdate, CartItemOut (subtotal as computed field), CartOut
+- [x] `app/schemas/order.py` — CheckoutRequest, OrderItemOut (subtotal computed), OrderOut
+- [x] `app/services/cart.py` — Redis hash cart (`cart:{user_id}`); get_cart_raw, set_cart_item, remove_cart_item, clear_cart, build_cart
+- [x] `app/services/order.py` — InsufficientStockError, checkout (SELECT FOR UPDATE + atomic stock decrement), get_order, list_orders
+- [x] `app/api/v1/cart.py` — GET /cart, POST /cart/items, PUT /cart/items/{id}, DELETE /cart/items/{id}, DELETE /cart
+- [x] `app/api/v1/orders.py` — POST /orders/checkout, GET /orders, GET /orders/{id}
+- [x] `tests/test_cart.py` — 11 tests: auth guard, empty cart, get with items, add/update/remove/clear, 404/422 guards
+- [x] `tests/test_orders.py` — 12 tests: checkout success/empty cart/insufficient stock/unavailable product, order list+pagination, order detail+404+wrong-user-is-404, unit test for error message
+- [x] All 67 tests pass (16 auth + 25 catalog + 3 health + 11 cart + 12 orders)
+
+### Notes
+- Cart stored as Redis hash `cart:{user_id}` — field = product_id, value = quantity; TTL = 7 days (reset on each write)
+- Checkout uses `SELECT ... FOR UPDATE` to lock product rows; validates all stock before touching anything; atomic within a single SQLAlchemy transaction
+- Stock can never go negative: rejected at checkout with `InsufficientStockError` → HTTP 409 with clear message (product name, requested, available)
+- Order items snapshot product name + unit_price at purchase time — unaffected by future product edits or deletion
+- `OrderItem.product_id` FK is `ON DELETE SET NULL` — allows product hard-delete without breaking order history
+- Order detail scoped to `user_id` — wrong-user order returns 404, not 403 (no existence leakage)
+- Mock payment step: always approved; returns `transaction_id = mock_txn_{hex8}`
