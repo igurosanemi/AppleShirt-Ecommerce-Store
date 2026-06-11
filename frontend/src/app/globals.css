@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Shared spacing tokens */
+    --section-y: clamp(4rem, 8vw, 8rem);
+    --page-x: clamp(2rem, 5vw, 6rem);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-950 antialiased;
+    /* Geist Sans enables ss01 (single-storey a) and cv01 by default */
+    font-feature-settings: 'ss01', 'cv01';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-zinc-950 text-zinc-50;
+    }
+  }
+
+  /* Accessible focus ring using the same accent as the page */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-zinc-950;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :focus-visible {
+      @apply outline-zinc-50;
+    }
+  }
+}

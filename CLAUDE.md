@@ -126,3 +126,15 @@ uv run python -m app.db.seed
 - Product images reference paths under `frontend/public/images/products/` (served by Next.js)
 - Public endpoints: `GET /api/v1/catalog/categories`, `GET /api/v1/catalog/products`, `GET /api/v1/catalog/products/{id}`
 - Admin endpoints: POST/PUT/DELETE on `/api/v1/catalog/categories` and `/api/v1/catalog/products` (require `is_admin=True`)
+
+## Frontend Notes (Phase 5+)
+- Framework: Next.js 14, App Router, TypeScript, Tailwind v3, `darkMode: 'media'`
+- Font: Geist Sans via `geist` npm package + `next/font`. NOT Inter (per taste-skill)
+- Icons: `@phosphor-icons/react` exclusively. Do not mix with other icon libraries.
+- Motion: `motion/react` (Motion v11). Never `window.addEventListener('scroll')`. Use `useScroll` + `useMotionValueEvent` for scroll-driven state.
+- Design palette: Cold Luxury — zinc-50/zinc-950 monochrome. Banned warm beige/brass family.
+- `src/types/index.ts` — all backend types. Prices are `number` (integer cents). Never use `number` for a price without noting it's cents.
+- `src/lib/api.ts` — typed fetch wrappers (`authApi`, `catalogApi`, `cartApi`, `ordersApi`). Uses `credentials: 'include'` for cookie; `Authorization: Bearer` header for token.
+- `src/lib/auth-context.tsx` — `AuthProvider` manages in-memory access token + refresh from httpOnly cookie on mount. Access token NEVER in localStorage.
+- `src/lib/utils.ts` — `cn()` (clsx), `formatPrice(cents)` (formats to USD — UI layer only, never on the number itself)
+- All page sections use `min-h-[100dvh]` (never `h-screen`) for viewport stability on mobile Safari.

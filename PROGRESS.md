@@ -9,7 +9,7 @@
 | 2 | Auth | Done |
 | 3 | Catalog API | Done |
 | 4 | Cart + Orders API | Done |
-| 5 | Frontend Scaffold | Not started |
+| 5 | Frontend Scaffold | Done |
 | 6 | Frontend Auth Pages | Not started |
 | 7 | Storefront | Not started |
 | 8 | Cart + Checkout UI | Not started |
@@ -138,3 +138,46 @@
 - `OrderItem.product_id` FK is `ON DELETE SET NULL` — allows product hard-delete without breaking order history
 - Order detail scoped to `user_id` — wrong-user order returns 404, not 403 (no existence leakage)
 - Mock payment step: always approved; returns `transaction_id = mock_txn_{hex8}`
+
+---
+
+## Phase 5 — Frontend Scaffold
+
+**Status**: Done
+
+### Checklist
+- [x] `frontend/package.json` — Next.js 14, React 18, TypeScript, Tailwind v3, Geist font, Motion, Phosphor icons, clsx
+- [x] `frontend/tsconfig.json` — strict mode, `@/*` path alias to `src/`
+- [x] `frontend/next.config.mjs` — remote image patterns (picsum.photos)
+- [x] `frontend/tailwind.config.ts` — `darkMode: 'media'`, Geist Sans font variable, `tightest` tracking token
+- [x] `frontend/postcss.config.js` — standard tailwindcss + autoprefixer
+- [x] `frontend/.env.local` — `NEXT_PUBLIC_API_URL=http://localhost:8000`
+- [x] `frontend/src/types/index.ts` — all backend types mirrored (UserOut, TokenResponse, CategoryOut, ProductOut, CartItemOut, CartOut, OrderItemOut, OrderOut, PaginationMeta); prices as integers
+- [x] `frontend/src/lib/utils.ts` — `cn()` (clsx), `formatPrice(cents)` (currency format, UI-layer only)
+- [x] `frontend/src/lib/api.ts` — typed fetch wrappers (authApi, catalogApi, cartApi, ordersApi); `ApiError` class; `credentials: 'include'` for cookie; `Authorization: Bearer` header for token
+- [x] `frontend/src/lib/auth-context.tsx` — in-memory access token; refresh-on-mount from httpOnly cookie; `login`, `register`, `logout`, `refreshToken` actions
+- [x] `frontend/src/components/layout/Navbar.tsx` — fixed 64px, transparent-on-top / blurred-on-scroll (Motion useScroll), desktop nav + mobile drawer, cart + account icons (Phosphor)
+- [x] `frontend/src/components/layout/Footer.tsx` — 3-col grid (brand / shop / account), clean copyright line
+- [x] `frontend/src/app/globals.css` — Tailwind base + `ss01`/`cv01` font features, focus ring, dark mode via media query
+- [x] `frontend/src/app/layout.tsx` — Geist Sans variable, AuthProvider, Navbar, main, Footer
+- [x] `frontend/src/app/page.tsx` — home page proving design system (see Notes)
+- [x] `npm install` ran, node_modules present
+- [x] PROGRESS.md + CLAUDE.md updated
+- [x] Git commit: `feat: phase 5 — frontend scaffold`
+
+### Notes
+**Design system: taste-skill applied**
+- Design read: premium consumer e-commerce shell, cold-luxury editorial language, Tailwind v3 + Geist Sans
+- Dials: `DESIGN_VARIANCE: 7` / `MOTION_INTENSITY: 5` / `VISUAL_DENSITY: 3`
+- Palette: Cold Luxury — `zinc-50`/`zinc-950` monochrome. Banned AI-default beige/brass family not used.
+- Font: Geist Sans (via `geist` npm package + `next/font`). NOT Inter.
+- Icons: `@phosphor-icons/react` exclusively. One icon family per project.
+- Corner radius: none (all sharp, architectural — consistent throughout)
+- Dark mode: `media` strategy, no class toggling, no hydration mismatches
+
+**Home page sections (3 different layout families):**
+1. **Asymmetric Split Hero** — left 55% text / right 45% editorial Picsum image; min-h-[100dvh]; Motion `animate` fade-up cascade (0.1s / 0.25s / 0.4s delays)
+2. **Mixed Bento Grid** — 4 collection tiles in a `grid-cols-2 lg:grid-cols-3` layout; Shirts (col-span-2) + Trousers (1) / Accessories (1) + Outerwear (col-span-2); zero empty cells at any breakpoint; Picsum images with scrim overlay
+3. **Brand Statement** — full-width left-aligned large type; Motion `whileInView` scroll reveal; secondary text link CTA
+
+**Motion:** `useReducedMotion()` gates all animations; hero uses `animate`, scroll sections use `whileInView viewport once`; `useMotionValueEvent` for navbar scroll state — no `window.addEventListener('scroll')`
