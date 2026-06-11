@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useScroll, useMotionValueEvent } from 'motion/react'
 import { ShoppingBag, UserCircle, List, X } from '@phosphor-icons/react'
 import { useAuth } from '@/lib/auth-context'
@@ -18,7 +19,13 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { scrollY } = useScroll()
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
+  const router = useRouter()
+
+  async function handleLogout() {
+    await logout()
+    router.push('/')
+  }
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 20)
@@ -73,6 +80,16 @@ export function Navbar() {
             <UserCircle size={20} />
           </Link>
 
+          {/* Logout — visible only when authenticated */}
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="hidden md:block text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+            >
+              Sign out
+            </button>
+          )}
+
           {/* Mobile menu toggle */}
           <button
             className="md:hidden text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
@@ -98,6 +115,14 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          {user && (
+            <button
+              onClick={() => { setMobileOpen(false); handleLogout() }}
+              className="text-left text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+            >
+              Sign out
+            </button>
+          )}
         </div>
       )}
     </header>

@@ -138,3 +138,7 @@ uv run python -m app.db.seed
 - `src/lib/auth-context.tsx` — `AuthProvider` manages in-memory access token + refresh from httpOnly cookie on mount. Access token NEVER in localStorage.
 - `src/lib/utils.ts` — `cn()` (clsx), `formatPrice(cents)` (formats to USD — UI layer only, never on the number itself)
 - All page sections use `min-h-[100dvh]` (never `h-screen`) for viewport stability on mobile Safari.
+- `src/components/ui/Input.tsx` — reusable input (`hasError` prop). `src/components/ui/Button.tsx` — primary/ghost, `loading` prop.
+- `src/hooks/use-require-auth.ts` — call in any page that needs auth. Redirects to `/login?next=<path>` when unauthenticated.
+- Auth pages (`/login`, `/register`): render `null` while auth resolves to prevent form flash before redirect. Server errors distinguish 401/409 status codes.
+- Logout: `useAuth().logout()` clears in-memory token + calls backend to clear refresh cookie. Navbar calls it then `router.push('/')`.

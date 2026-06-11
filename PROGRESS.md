@@ -10,7 +10,7 @@
 | 3 | Catalog API | Done |
 | 4 | Cart + Orders API | Done |
 | 5 | Frontend Scaffold | Done |
-| 6 | Frontend Auth Pages | Not started |
+| 6 | Frontend Auth Pages | Done |
 | 7 | Storefront | Not started |
 | 8 | Cart + Checkout UI | Not started |
 | 9 | Polish + E2E | Not started |
@@ -181,3 +181,27 @@
 3. **Brand Statement** — full-width left-aligned large type; Motion `whileInView` scroll reveal; secondary text link CTA
 
 **Motion:** `useReducedMotion()` gates all animations; hero uses `animate`, scroll sections use `whileInView viewport once`; `useMotionValueEvent` for navbar scroll state — no `window.addEventListener('scroll')`
+
+---
+
+## Phase 6 — Frontend Auth Pages
+
+**Status**: Done
+
+### Checklist
+- [x] `src/components/ui/Input.tsx` — forwardRef input; `hasError` prop toggles red border; no radius (sharp aesthetic); `placeholder-zinc-500` for WCAG AA compliance
+- [x] `src/components/ui/Button.tsx` — primary + ghost variants; `loading` prop disables + shows "Please wait..."; `aria-busy` set; `active:scale-[0.98]` tactile feedback
+- [x] `src/hooks/use-require-auth.ts` — redirect to `/login?next=<path>` when auth settles with no token
+- [x] `src/app/login/page.tsx` — email + password form; client-side validation; inline field errors; server error banner; redirect away if already logged in; `?next=` param honored on success
+- [x] `src/app/register/page.tsx` — full name + email + password + confirm password; validates match + min length; 409 detected as "email already exists"; redirect to `/` on success
+- [x] `src/components/layout/Navbar.tsx` — logout button added (desktop: `hidden md:block` text link; mobile: in drawer); calls `logout()` then `router.push('/')`
+- [x] TypeScript clean (exit code 0)
+- [x] PROGRESS.md + CLAUDE.md updated
+- [x] Git commit: `feat: phase 6 — frontend auth pages`
+
+### Notes
+- Auth pages use the root layout (Navbar + Footer visible); no route group needed — nav is readable against zinc-50 background and links back to shop
+- Redirect-after-login: `?next=` query param preserved through login so protected pages can bounce users back correctly
+- "If already logged in" guard: `useEffect` watches `authLoading + token`; renders `null` while auth resolves to prevent flash-of-form before redirect
+- Field errors clear on change (real-time feel without aggressive validation)
+- `useRequireAuth` hook ready for Phase 7 protected pages (cart, orders, account) — passes `?next=` to login
