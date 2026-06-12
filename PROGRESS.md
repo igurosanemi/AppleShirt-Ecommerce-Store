@@ -12,7 +12,7 @@
 | 5 | Frontend Scaffold | Done |
 | 6 | Frontend Auth Pages | Done |
 | 7 | Storefront | Done |
-| 8 | Cart + Checkout UI | Not started |
+| 8 | Cart + Checkout UI | Done |
 | 9 | Polish + E2E | Not started |
 
 ---
@@ -205,6 +205,36 @@
 - "If already logged in" guard: `useEffect` watches `authLoading + token`; renders `null` while auth resolves to prevent flash-of-form before redirect
 - Field errors clear on change (real-time feel without aggressive validation)
 - `useRequireAuth` hook ready for Phase 7 protected pages (cart, orders, account) — passes `?next=` to login
+
+---
+
+## Phase 8 — Cart + Checkout UI ✅
+
+**Status**: Done
+
+### Checklist
+- [x] `src/app/cart/page.tsx` — Cart page: animated item list, qty stepper (Minus/Plus), remove with Trash icon, sticky order summary panel, empty state, loading skeleton; auth-gated via `useRequireAuth`
+- [x] `src/app/checkout/page.tsx` — Checkout: static delivery block + mock payment form (card/expiry/CVV pre-filled), live order summary with thumbnails and qty badges, Place Order button calls `ordersApi.checkout`, 409 stock-error handling, redirects to confirmation on success
+- [x] `src/app/orders/confirmation/[id]/page.tsx` — Confirmation: spring-animated CheckCircle icon, order meta panel (ID / status / date / transaction ID), itemised receipt, CTAs to order detail and shop
+- [x] `src/app/orders/page.tsx` — Order history: desktop grid table + mobile card list, pagination with prev/next, empty state, error state with retry
+- [x] `src/app/orders/[id]/page.tsx` — Order detail: items with unit price breakdown, payment block, summary info cells, breadcrumb back to history, "View product" link (SET NULL–safe)
+- [x] TypeScript clean (exit code 0)
+- [x] PROGRESS.md + CLAUDE.md updated
+- [x] Git commit: `feat: phase 8 — cart + checkout UI`
+
+### Notes
+**Design (taste-skill applied)**
+- Cold Luxury palette maintained throughout — zero warm tones, sharp corners, monochrome zinc scale
+- Cart: two-column layout (items / summary panel) on desktop, stacked on mobile; `AnimatePresence` for item remove animation; remove button turns red on hover
+- Checkout: mock payment block visually signals "not real" with lock icon + disclaimer; pre-filled inputs use `cursor-default` and muted styling to distinguish from interactive fields; Place Order button shows spinner + live price total
+- Confirmation: spring entrance for CheckCircle icon (scale from 0.5, stiff spring); staggered content fade-up; transaction ID displayed in monospace
+- Orders list: `[80px_1fr_140px_120px_80px]` grid on desktop; animated rows with stagger delay; "View" text link with arrow that reveals on row hover
+- Order detail: sectioned with icon + label headers; `InfoCell` component for consistent key/value display; handles `product_id = null` (ON DELETE SET NULL) gracefully
+
+**Data flow**
+- Cart mutations (updateItem, removeItem) optimistically disable affected rows via local `updatingId`/`removingId` state while API settles — no full re-render flicker
+- `clearCart()` called after checkout success before redirect — Navbar badge resets to 0 immediately
+- Order confirmation fetches the full order from API (not from checkout response) to guarantee fresh server state
 
 ---
 

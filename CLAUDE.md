@@ -142,3 +142,12 @@ uv run python -m app.db.seed
 - `src/hooks/use-require-auth.ts` — call in any page that needs auth. Redirects to `/login?next=<path>` when unauthenticated.
 - Auth pages (`/login`, `/register`): render `null` while auth resolves to prevent form flash before redirect. Server errors distinguish 401/409 status codes.
 - Logout: `useAuth().logout()` clears in-memory token + calls backend to clear refresh cookie. Navbar calls it then `router.push('/')`.
+- `src/lib/cart-context.tsx` — `CartProvider`/`useCart`. Cart fetched on auth resolve; cleared on logout. Exposes `addItem`, `updateItem`, `removeItem`, `clearCart`, `refresh`.
+
+## Frontend Notes (Phase 8 — Cart + Checkout)
+- Cart page `/cart` — `useCart()` for data; local `updatingId`/`removingId` per-item to disable rows during async mutations; `AnimatePresence` for item removal; two-column layout (items / sticky summary) on desktop.
+- Checkout page `/checkout` — mock payment form (pre-filled, read-only); calls `ordersApi.checkout(token)`; 409 maps to stock-error message; on success `clearCart()` then redirect to `/orders/confirmation/{id}`.
+- Confirmation page `/orders/confirmation/[id]` — fetches order fresh from API (not from checkout response); spring-animated check icon; transaction ID in monospace.
+- Orders list `/orders` — `ordersApi.list()` with page state; desktop grid table, mobile card list; empty + error states; pagination with prev/next.
+- Order detail `/orders/[id]` — `ordersApi.get()`; `product_id` may be null (ON DELETE SET NULL) — handled gracefully; sectioned layout (Items / Payment / Summary).
+- All cart/order pages call `useRequireAuth()` for auth guard.
