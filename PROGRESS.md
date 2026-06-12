@@ -11,7 +11,7 @@
 | 4 | Cart + Orders API | Done |
 | 5 | Frontend Scaffold | Done |
 | 6 | Frontend Auth Pages | Done |
-| 7 | Storefront | Not started |
+| 7 | Storefront | Done |
 | 8 | Cart + Checkout UI | Not started |
 | 9 | Polish + E2E | Not started |
 
@@ -205,3 +205,51 @@
 - "If already logged in" guard: `useEffect` watches `authLoading + token`; renders `null` while auth resolves to prevent flash-of-form before redirect
 - Field errors clear on change (real-time feel without aggressive validation)
 - `useRequireAuth` hook ready for Phase 7 protected pages (cart, orders, account) — passes `?next=` to login
+
+---
+
+## Phase 7 — Storefront ✅
+
+**Status**: Done
+
+### Checklist
+- [x] 15 real Unsplash product + hero images downloaded to `frontend/public/images/` — shirts, trousers, accessories, outerwear, editorial hero
+- [x] `src/lib/cart-context.tsx` — `CartProvider` + `useCart`; fetches on auth resolve; exposes `addItem`, `updateItem`, `removeItem`, `clearCart`, `refresh`
+- [x] `src/app/layout.tsx` — `CartProvider` nested inside `AuthProvider`
+- [x] `src/components/layout/Navbar.tsx` — cart count badge on shopping bag icon (disappears when empty)
+- [x] `src/app/shop/page.tsx` — Suspense wrapper + loading skeleton
+- [x] `src/app/shop/ShopContent.tsx` — full shop listing: sticky sidebar (desktop) / horizontal pill strip (mobile), debounced search, category filter, 3-col grid, animated product cards, Add to Bag hover bar, pagination
+- [x] `src/app/shop/[id]/page.tsx` — product detail: asymmetric image/info layout, quantity stepper, Add to Bag with stock validation, related products, breadcrumb navigation
+- [x] `src/app/page.tsx` — home page rebuilt: real editorial hero (local image), real product category tiles, editorial image strip, brand statement
+- [x] `next.config.mjs` — remote image patterns removed (all images are local static assets)
+- [x] `src/app/globals.css` — `scrollbar-none` utility added for mobile horizontal scroll
+- [x] TypeScript clean (exit code 0)
+- [x] PROGRESS.md + CLAUDE.md updated
+- [x] Git commit: `feat: phase 7 — storefront`
+
+### Notes
+**Design system (taste-skill applied)**
+- Dials held: DESIGN_VARIANCE 7 / MOTION_INTENSITY 5 / VISUAL_DENSITY 3
+- Cold Luxury palette throughout: no warm tones, no decorative elements, type does the work
+- All corners sharp — consistent with Phase 5/6
+
+**Images**
+- 14 product images + 1 hero editorial image from Unsplash CDN, downloaded to `/public` as static assets
+- Portraits are 900×1100 crop=top for consistent clothing framing; hero is 1600×900 landscape
+- No CDN dependency at runtime — zero external image requests
+
+**Shop page**
+- URL-driven state: `?category=shirts&search=oxford&page=2` — bookmarkable, back/forward safe
+- Search debounced 350ms — input state decoupled from URL state to avoid jump-typing
+- Product card: 3:4 aspect ratio, image scale-1.04 on hover (700ms ease), "Add to Bag" bar translates up from bottom on hover
+- Add to Bag: if unauthenticated → redirects to `/login?next=/shop/{id}`; if stock=0 → disabled; success → brief "✓ Added" state
+- Category sidebar sticky at top-28 on desktop; scrollable pill bar on mobile (scrollbar-none)
+- Skeleton loaders for products and categories during fetch
+
+**Product detail page**
+- Asymmetric split: full-height image left, sticky info panel right (380px)
+- Quantity stepper constrained to min=1, max=min(stock,10)
+- Low stock warning (≤5 remaining) in amber
+- Related products: up to 3 from same category, filtered to exclude current product
+- Breadcrumb: Shop / Category / Product — links back to filtered shop views
+- Both Add to Bag success + error states with motion feedback

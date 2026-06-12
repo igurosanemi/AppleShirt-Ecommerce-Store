@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useScroll, useMotionValueEvent } from 'motion/react'
 import { ShoppingBag, UserCircle, List, X } from '@phosphor-icons/react'
 import { useAuth } from '@/lib/auth-context'
+import { useCart } from '@/lib/cart-context'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
@@ -20,7 +21,9 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { scrollY } = useScroll()
   const { user, logout } = useAuth()
+  const { cart } = useCart()
   const router = useRouter()
+  const cartCount = cart?.item_count ?? 0
 
   async function handleLogout() {
     await logout()
@@ -66,10 +69,15 @@ export function Navbar() {
         <div className="flex items-center gap-5">
           <Link
             href="/cart"
-            aria-label="Cart"
-            className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+            aria-label={cartCount > 0 ? `Cart — ${cartCount} item${cartCount !== 1 ? 's' : ''}` : 'Cart'}
+            className="relative text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
           >
             <ShoppingBag size={20} />
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 flex items-center justify-center bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 text-[9px] font-semibold leading-none tabular-nums">
+                {cartCount > 99 ? '99+' : cartCount}
+              </span>
+            )}
           </Link>
 
           <Link
