@@ -152,3 +152,11 @@ uv run python -m app.db.seed
 - Orders list `/orders` — `ordersApi.list()` with page state; desktop grid table, mobile card list; empty + error states; pagination with prev/next.
 - Order detail `/orders/[id]` — `ordersApi.get()`; `product_id` may be null (ON DELETE SET NULL) — handled gracefully; sectioned layout (Items / Payment / Summary).
 - All cart/order pages call `useRequireAuth()` for auth guard.
+- Checkout `clearCart()` is non-blocking (`clearCart().catch(() => {})`) — redirect is never blocked by a Redis failure.
+
+## Frontend Notes (Phase 10 — Polish + QA)
+- Navbar: authenticated users see `Package` icon → `/orders`; unauthenticated users see `UserCircle` → `/login`. Mobile drawer includes "My Orders" and "Sign in" links. `aria-controls="mobile-menu"` on toggle.
+- ShopContent: products fetch waits for `!loadingCategories` (`categoriesReady` guard) to prevent double-fetch when `?category=` param is in URL on initial load.
+- ShopContent: dedicated error state (WarningCircle icon + Retry button) — distinguishes API failure from genuine no-results.
+- ShopContent: search inputs have visually-hidden `<label>` (`sr-only`) for screen reader accessibility. Category buttons have `aria-current="true"` when active.
+- Seed data: 19 products total, per-slug idempotency (safe to re-run). Includes `stock=0` items (OOS display) and `stock=1–4` items (low-stock amber warning).

@@ -14,7 +14,7 @@
 | 7 | Storefront | Done |
 | 8 | Cart + Checkout UI | Done |
 | 9 | Dark / Light Mode + Home Refinement | Done |
-| 10 | Polish + E2E | Not started |
+| 10 | Polish + E2E | Done |
 
 ---
 
@@ -311,3 +311,51 @@
 - `mounted` guard in `ThemeToggle` renders a fixed-size empty span during SSR to prevent layout shift
 - All `dark:` Tailwind prefixes throughout the codebase continue to work unchanged — they now respond to the `.dark` class rather than a media query
 - Home page `ProductCard` uses static data (4 hero products) — links to live `/shop` rather than deep product links to avoid coupling to seed IDs
+
+---
+
+## Phase 10 — Polish + E2E ✅
+
+**Status**: Done
+
+### Bugs Found and Fixed
+1. **Navbar `/account` 404** — `UserCircle` linked to `/account` (non-existent page); changed to `/orders` for logged-in users. Added `Package` icon for orders. Added "My Orders" + "Sign in" to mobile drawer.
+2. **ShopContent double-fetch** — with `?category=shirts` in URL, products fetched before categories loaded (no `category_id`), showing all products briefly. Fixed: products fetch now waits for `!loadingCategories` before running via `categoriesReady` guard.
+3. **ShopContent silent API error** — failed product fetch fell through to the "No products found" empty state with no indication of an error. Added dedicated error state with `WarningCircle` icon and Retry button calling `fetchProducts()` directly.
+4. **Search inputs missing accessible label** — `placeholder` alone is not sufficient for screen readers. Added visually-hidden `<label>` (`sr-only`) for both desktop sidebar and mobile search inputs.
+5. **Category filter buttons missing `aria-current`** — active filter had no machine-readable selected state. Added `aria-current="true"` on the active button in both sidebar and mobile pill bar.
+6. **Mobile drawer missing semantic nav + "Sign in" link** — drawer was a `<div>`; changed to `<nav aria-label="Mobile navigation">`. Added "Sign in" link for unauthenticated users.
+7. **`login/page.tsx` unused `Metadata` import** — `type { Metadata }` imported in a client component (metadata only works in server components). Removed.
+8. **Checkout `clearCart` blocking redirect** — `await clearCart()` could delay or prevent the redirect if the Redis call failed. Changed to `clearCart().catch(() => {})` — best-effort, non-blocking.
+
+### Seed Data Enriched
+- Added 5 new products across all categories (19 total): Midnight Black Oxford, Washed Grey Chambray, Stone Linen Trousers, Card Holder, Navy Double-Breasted Blazer
+- Introduced `stock=0` items (Washed Grey Chambray, Card Holder) for out-of-stock UI testing
+- Introduced `stock=1-4` items (Midnight Black Oxford, Stone Linen Trousers, Navy Blazer) for low-stock warning testing
+- Seed now idempotent per-slug: checks both categories AND products by slug — safe to re-run without wiping data
+- All descriptions expanded to 2–3 sentences with fabric details and positioning copy
+
+### Accessibility Improvements
+- `aria-label` on search inputs via visually-hidden `<label>` elements
+- `aria-current="true"` on active category filter buttons
+- `aria-controls="mobile-menu"` on mobile hamburger toggle
+- Mobile drawer promoted from `<div>` to `<nav>` with `aria-label`
+- Focus rings via `:focus-visible` in `globals.css` apply to all interactive elements
+- All images have meaningful `alt` text; decorative images use `alt=""`
+
+### TypeScript
+- TypeScript clean (exit code 0)
+
+### Checklist
+- [x] Navbar `/account` → `/orders` fix + Orders icon + mobile "My Orders" link
+- [x] ShopContent double-fetch guard (`categoriesReady`)
+- [x] ShopContent error state with Retry
+- [x] Search `aria-label` via `sr-only` labels
+- [x] Category filter `aria-current`
+- [x] Mobile nav semantic + Sign in link
+- [x] Login page unused import removed
+- [x] Checkout clearCart non-blocking
+- [x] Seed data enriched (19 products, per-slug idempotency, OOS + low-stock items)
+- [x] TypeScript clean (exit code 0)
+- [x] PROGRESS.md + CLAUDE.md finalized
+- [x] Git commit: `feat: phase 10 — polish + QA`

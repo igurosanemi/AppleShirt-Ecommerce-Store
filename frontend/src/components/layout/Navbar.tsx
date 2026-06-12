@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useScroll, useMotionValueEvent } from 'motion/react'
-import { ShoppingBag, UserCircle, List, X } from '@phosphor-icons/react'
+import { ShoppingBag, UserCircle, List, X, Package } from '@phosphor-icons/react'
 import { useAuth } from '@/lib/auth-context'
 import { useCart } from '@/lib/cart-context'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -83,21 +83,30 @@ export function Navbar() {
             )}
           </Link>
 
-          <Link
-            href={user ? '/account' : '/login'}
-            aria-label={user ? 'My account' : 'Sign in'}
-            className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
-          >
-            <UserCircle size={20} />
-          </Link>
-
-          {user && (
-            <button
-              onClick={handleLogout}
-              className="hidden md:block text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+          {user ? (
+            <>
+              <Link
+                href="/orders"
+                aria-label="My orders"
+                className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+              >
+                <Package size={20} />
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="hidden md:block text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+              >
+                Sign out
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              aria-label="Sign in"
+              className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
             >
-              Sign out
-            </button>
+              <UserCircle size={20} />
+            </Link>
           )}
 
           {/* Mobile menu toggle */}
@@ -106,6 +115,7 @@ export function Navbar() {
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             {mobileOpen ? <X size={20} /> : <List size={20} />}
           </button>
@@ -114,7 +124,11 @@ export function Navbar() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 flex flex-col gap-5">
+        <nav
+          id="mobile-menu"
+          aria-label="Mobile navigation"
+          className="md:hidden bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 flex flex-col gap-5"
+        >
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -125,15 +139,32 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          {user && (
-            <button
-              onClick={() => { setMobileOpen(false); handleLogout() }}
-              className="text-left text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+          {user ? (
+            <>
+              <Link
+                href="/orders"
+                className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                My Orders
+              </Link>
+              <button
+                onClick={() => { setMobileOpen(false); handleLogout() }}
+                className="text-left text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+              >
+                Sign out
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+              onClick={() => setMobileOpen(false)}
             >
-              Sign out
-            </button>
+              Sign in
+            </Link>
           )}
-        </div>
+        </nav>
       )}
     </header>
   )

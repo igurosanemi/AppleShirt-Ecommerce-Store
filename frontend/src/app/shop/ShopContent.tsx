@@ -10,6 +10,7 @@ import {
   X,
   ArrowLeft,
   ArrowRight,
+  WarningCircle,
 } from '@phosphor-icons/react'
 import { catalogApi } from '@/lib/api'
 import { useCart } from '@/lib/cart-context'
@@ -148,6 +149,7 @@ export function ShopContent() {
   const [meta, setMeta] = useState<PaginationMeta | null>(null)
   const [loadingProducts, setLoadingProducts] = useState(true)
   const [loadingCategories, setLoadingCategories] = useState(true)
+  const [productError, setProductError] = useState(false)
 
   // Sync search input when URL changes externally (e.g. browser back)
   useEffect(() => {
@@ -163,12 +165,18 @@ export function ShopContent() {
       .finally(() => setLoadingCategories(false))
   }, [])
 
-  // Derive category_id from slug
+  // Derive category_id from slug — only valid once categories are loaded
   const activeCategoryId = categories.find((c) => c.slug === categorySlug)?.id
 
-  // Fetch products when filters or page changes
-  useEffect(() => {
+  // Wait for categories to load before fetching products when a category slug is in the URL.
+  // Without this guard, the first fetch runs with no category_id (shows all products),
+  // then re-runs once categories resolve — causing a flash of wrong results.
+  const categoriesReady = !loadingCategories
+
+  const fetchProducts = useCallback(() => {
+    if (!categoriesReady) return
     setLoadingProducts(true)
+    setProductError(false)
     catalogApi
       .getProducts({
         page: currentPage,
@@ -184,9 +192,14 @@ export function ShopContent() {
       .catch(() => {
         setProducts([])
         setMeta(null)
+        setProductError(true)
       })
       .finally(() => setLoadingProducts(false))
-  }, [currentPage, activeCategoryId, searchQuery])
+  }, [categoriesReady, currentPage, activeCategoryId, searchQuery])
+
+  useEffect(() => {
+    fetchProducts()
+  }, [fetchProducts])
 
   function updateUrl(updates: Record<string, string | number | undefined>) {
     const params = new URLSearchParams(searchParams.toString())
@@ -197,7 +210,6 @@ export function ShopContent() {
         params.set(key, String(val))
       }
     }
-    // page reset on filter change handled by callers
     router.replace(`/shop${params.toString() ? `?${params}` : ''}`, { scroll: false })
   }
 
@@ -231,6 +243,8 @@ export function ShopContent() {
     ? `"${searchQuery}"`
     : 'Shop All'
 
+  const searchId = 'shop-search'
+
   return (
     <div className="min-h-[100dvh] pt-32 pb-24">
       {/* Page header */}
@@ -257,12 +271,15 @@ export function ShopContent() {
         <aside className="hidden lg:block w-52 shrink-0 sticky top-28">
           {/* Search */}
           <div className="relative mb-8">
+            <label htmlFor={`${searchId}-desktop`} className="sr-only">Search products</label>
             <MagnifyingGlass
               size={14}
               weight="regular"
               className="absolute left-0 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none"
+              aria-hidden
             />
             <input
+              id={`${searchId}-desktop`}
               type="search"
               value={searchInput}
               onChange={(e) => handleSearchChange(e.target.value)}
@@ -275,20 +292,21 @@ export function ShopContent() {
                 className="absolute right-0 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                 aria-label="Clear search"
               >
-                <X size={14} />
+                <X size={14} aria-hidden />
               </button>
             )}
           </div>
 
           {/* Categories */}
           <nav aria-label="Filter by category">
-            <p className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4">
+            <p className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4" id="category-label">
               Category
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2.5" aria-labelledby="category-label">
               <li>
                 <button
                   onClick={() => handleCategorySelect('')}
+                  aria-current={!categorySlug ? 'true' : undefined}
                   className={cn(
                     'text-sm transition-colors duration-150',
                     !categorySlug
@@ -309,6 +327,7 @@ export function ShopContent() {
                     <li key={cat.id}>
                       <button
                         onClick={() => handleCategorySelect(cat.slug)}
+                        aria-current={categorySlug === cat.slug ? 'true' : undefined}
                         className={cn(
                           'text-sm transition-colors duration-150',
                           categorySlug === cat.slug
@@ -330,11 +349,14 @@ export function ShopContent() {
           <div className="lg:hidden mb-8 space-y-4">
             {/* Search */}
             <div className="relative">
+              <label htmlFor={`${searchId}-mobile`} className="sr-only">Search products</label>
               <MagnifyingGlass
                 size={14}
                 className="absolute left-0 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none"
+                aria-hidden
               />
               <input
+                id={`${searchId}-mobile`}
                 type="search"
                 value={searchInput}
                 onChange={(e) => handleSearchChange(e.target.value)}
@@ -347,14 +369,15 @@ export function ShopContent() {
                   className="absolute right-0 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50"
                   aria-label="Clear search"
                 >
-                  <X size={14} />
+                  <X size={14} aria-hidden />
                 </button>
               )}
             </div>
             {/* Category pills */}
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none" role="group" aria-label="Filter by category">
               <button
                 onClick={() => handleCategorySelect('')}
+                aria-current={!categorySlug ? 'true' : undefined}
                 className={cn(
                   'shrink-0 px-3 py-1 text-xs uppercase tracking-widest border transition-colors duration-150',
                   !categorySlug
@@ -368,6 +391,7 @@ export function ShopContent() {
                 <button
                   key={cat.id}
                   onClick={() => handleCategorySelect(cat.slug)}
+                  aria-current={categorySlug === cat.slug ? 'true' : undefined}
                   className={cn(
                     'shrink-0 px-3 py-1 text-xs uppercase tracking-widest border transition-colors duration-150',
                     categorySlug === cat.slug
@@ -392,6 +416,19 @@ export function ShopContent() {
                   <div className="h-4 w-20 bg-zinc-100 dark:bg-zinc-800 animate-pulse" />
                 </div>
               ))}
+            </div>
+          ) : productError ? (
+            <div className="py-24 text-center">
+              <WarningCircle size={36} className="text-zinc-300 dark:text-zinc-700 mx-auto mb-4" weight="thin" />
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
+                Could not load products. Please try again.
+              </p>
+              <button
+                onClick={fetchProducts}
+                className="text-sm underline underline-offset-2 text-zinc-950 dark:text-zinc-50 hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors"
+              >
+                Retry
+              </button>
             </div>
           ) : products.length === 0 ? (
             <div className="py-24 text-center">

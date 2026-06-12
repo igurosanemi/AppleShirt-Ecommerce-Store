@@ -43,7 +43,7 @@ export default function CheckoutPage() {
     setError(null)
     try {
       const { data: order } = await ordersApi.checkout(token)
-      await clearCart()
+      clearCart().catch(() => {}) // best-effort — don't block redirect
       router.push(`/orders/confirmation/${order.id}`)
     } catch (err) {
       if (err instanceof ApiError) {

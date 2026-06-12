@@ -8,7 +8,6 @@ import { useAuth } from '@/lib/auth-context'
 import { ApiError } from '@/lib/api'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import type { Metadata } from 'next'
 
 // ---------------------------------------------------------------------------
 // Validation
