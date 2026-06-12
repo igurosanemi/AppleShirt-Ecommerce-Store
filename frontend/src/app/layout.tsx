@@ -7,6 +7,7 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { AuthProvider } from '@/lib/auth-context'
 import { CartProvider } from '@/lib/cart-context'
+import { ToastProvider } from '@/components/ui/Toast'
 
 const cormorant = Cormorant({
   subsets: ['latin'],
@@ -40,9 +41,11 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <CartProvider>
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
+              <ToastProvider>
+                <Navbar />
+                <main>{children}</main>
+                <Footer />
+              </ToastProvider>
             </CartProvider>
           </AuthProvider>
         </ThemeProvider>

@@ -1,54 +1,17 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowRight } from '@phosphor-icons/react'
-import { cn } from '@/lib/utils'
-import { formatPrice } from '@/lib/utils'
+import { cn, formatPrice } from '@/lib/utils'
+import { catalogApi } from '@/lib/api'
+import type { ProductOut } from '@/types'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-// ---------------------------------------------------------------------------
-// Featured products — static showcase
-// ---------------------------------------------------------------------------
-
-const FEATURED = [
-  {
-    id: 'classic-white-oxford',
-    name: 'Classic White Oxford',
-    category: 'Shirts',
-    priceCents: 8500,
-    image: '/images/products/shirts/classic-white-oxford.jpg',
-    href: '/shop',
-  },
-  {
-    id: 'camel-overcoat',
-    name: 'Camel Overcoat',
-    category: 'Outerwear',
-    priceCents: 24900,
-    image: '/images/products/outerwear/camel-overcoat.jpg',
-    href: '/shop',
-  },
-  {
-    id: 'charcoal-dress-trousers',
-    name: 'Charcoal Dress Trousers',
-    category: 'Trousers',
-    priceCents: 12900,
-    image: '/images/products/trousers/charcoal-dress-trousers.jpg',
-    href: '/shop',
-  },
-  {
-    id: 'brushed-steel-watch',
-    name: 'Brushed Steel Watch',
-    category: 'Accessories',
-    priceCents: 18500,
-    image: '/images/products/accessories/brushed-steel-watch.jpg',
-    href: '/shop',
-  },
-]
-
-const MARQUEE_TEXT = 'CONSIDERED MENSWEAR · DRESSED WITH INTENT · NEW COLLECTION 2025 · FREE SHIPPING OVER $150 · '
+const MARQUEE_TEXT = 'CONSIDERED MENSWEAR · DRESSED WITH INTENT · NEW COLLECTION 2025 · FREE SHIPPING OVER $150 · '
 
 // ---------------------------------------------------------------------------
 // CollectionTile
@@ -84,9 +47,14 @@ function CollectionTile({
         sizes="(max-width: 768px) 50vw, 33vw"
         className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-zinc-950/10 to-transparent transition-opacity duration-300 group-hover:from-zinc-950/80" />
+      {/* Stronger gradient for legibility — bottom 40% darkened heavily */}
+      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-transparent transition-opacity duration-300 group-hover:from-zinc-950/95" />
       <div className="absolute bottom-5 left-5 flex items-center gap-2">
-        <span className="text-zinc-50 text-[11px] font-medium uppercase tracking-label">
+        {/* Text shadow for extra safety on very light images */}
+        <span
+          className="text-zinc-50 text-[11px] font-medium uppercase tracking-label"
+          style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
+        >
           {title}
         </span>
         <ArrowRight
@@ -100,55 +68,64 @@ function CollectionTile({
 }
 
 // ---------------------------------------------------------------------------
-// ProductCard
+// FeaturedCard — real data from API
 // ---------------------------------------------------------------------------
 
-function ProductCard({
-  name,
-  category,
-  priceCents,
-  image,
-  href,
-  delay = 0,
-}: {
-  name: string
-  category: string
-  priceCents: number
-  image: string
-  href: string
-  delay?: number
-}) {
+function FeaturedCard({ product, delay = 0 }: { product: ProductOut; delay?: number }) {
+  const reduce = useReducedMotion()
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={reduce ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, delay, ease: EASE }}
     >
-      <Link href={href} className="group block">
+      <Link href={`/shop/${product.id}`} className="group block">
         <div className="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-900 mb-4">
-          <Image
-            src={image}
-            alt={name}
-            fill
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-          />
+          {product.image_url ? (
+            <Image
+              src={product.image_url}
+              alt={product.name}
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
+          ) : (
+            <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800" />
+          )}
           <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/8 transition-colors duration-300" />
         </div>
-        <p className="text-[11px] font-medium uppercase tracking-label text-zinc-400 dark:text-zinc-500 mb-1">
-          {category}
+        <p className="text-[11px] font-medium uppercase tracking-label text-[var(--color-subtle)] mb-1">
+          {product.category?.name ?? ''}
         </p>
         <div className="flex items-baseline justify-between gap-2">
           <p className="text-[15px] font-medium text-[var(--color-fg)] group-hover:text-[var(--color-muted)] transition-colors duration-200 leading-snug">
-            {name}
+            {product.name}
           </p>
           <p className="text-[14px] font-medium text-[var(--color-muted)] tabular-nums shrink-0">
-            {formatPrice(priceCents)}
+            {formatPrice(product.price)}
           </p>
         </div>
       </Link>
     </motion.div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Skeleton for featured cards while loading
+// ---------------------------------------------------------------------------
+
+function FeaturedSkeleton() {
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div key={i} className="space-y-3">
+          <div className="aspect-[3/4] bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="h-2.5 w-12 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="h-4 w-32 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -158,6 +135,16 @@ function ProductCard({
 
 export default function HomePage() {
   const reduce = useReducedMotion()
+  const [featured, setFeatured] = useState<ProductOut[]>([])
+  const [featuredLoading, setFeaturedLoading] = useState(true)
+
+  useEffect(() => {
+    catalogApi
+      .getProducts({ page_size: 4, active_only: true })
+      .then(({ data }) => setFeatured(data))
+      .catch(() => {})
+      .finally(() => setFeaturedLoading(false))
+  }, [])
 
   function fadeUp(delay = 0) {
     return {
@@ -184,23 +171,25 @@ export default function HomePage() {
       <section className="relative min-h-[100dvh] grid grid-cols-1 lg:grid-cols-[55fr_45fr] overflow-hidden">
         {/* Left: text panel */}
         <div className="relative z-10 flex flex-col justify-end lg:justify-center px-6 pt-28 pb-16 md:px-12 lg:px-20 xl:px-28 lg:pt-24 lg:pb-0">
-          {/* Mobile: hero image sits behind text */}
+          {/* Mobile: hero image sits behind text with a strong scrim */}
           <div className="absolute inset-0 lg:hidden">
             <Image
               src="/images/hero/hero-editorial.jpg"
-              alt=""
+              alt="Man in tailored AppleShirt clothing, editorial shot"
               fill
               priority
               sizes="100vw"
               className="object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/30 to-zinc-950/10" />
+            {/* Stronger gradient — text reads clearly even on mid-tone images */}
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/95 via-zinc-950/60 to-zinc-950/20" />
           </div>
 
           <div className="relative">
             <motion.p
               {...fadeUp(0.05)}
               className="text-[11px] uppercase tracking-label text-zinc-400 mb-5"
+              style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}
             >
               New Collection — 2025
             </motion.p>
@@ -208,6 +197,7 @@ export default function HomePage() {
             <motion.h1
               {...fadeUp(0.15)}
               className="font-display font-normal text-[3.75rem] md:text-[5rem] lg:text-[5.75rem] xl:text-[6.5rem] leading-[0.93] tracking-display text-zinc-50 lg:text-[var(--color-fg)]"
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.35)' }}
             >
               Dressed
               <br />
@@ -217,6 +207,7 @@ export default function HomePage() {
             <motion.p
               {...fadeUp(0.3)}
               className="mt-7 text-[15px] text-zinc-300 lg:text-[var(--color-muted)] leading-relaxed max-w-[36ch]"
+              style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}
             >
               Considered menswear. Shirts, trousers, and accessories that outlast trends.
             </motion.p>
@@ -259,7 +250,7 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* MARQUEE — signature element, one instance only                       */}
+      {/* MARQUEE                                                              */}
       {/* ------------------------------------------------------------------ */}
       <div
         className="border-y border-[var(--color-border)] overflow-hidden py-4 bg-[var(--color-bg)]"
@@ -278,7 +269,7 @@ export default function HomePage() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* FEATURED PRODUCTS                                                    */}
+      {/* FEATURED PRODUCTS — real data from API                               */}
       {/* ------------------------------------------------------------------ */}
       <section className="px-6 md:px-12 lg:px-20 xl:px-28 py-20 lg:py-28">
         <div className="flex items-end justify-between mb-10">
@@ -299,19 +290,15 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5">
-          {FEATURED.map((product, i) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              category={product.category}
-              priceCents={product.priceCents}
-              image={product.image}
-              href={product.href}
-              delay={i * 0.07}
-            />
-          ))}
-        </div>
+        {featuredLoading ? (
+          <FeaturedSkeleton />
+        ) : featured.length > 0 ? (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5">
+            {featured.map((product, i) => (
+              <FeaturedCard key={product.id} product={product} delay={i * 0.07} />
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {/* ------------------------------------------------------------------ */}

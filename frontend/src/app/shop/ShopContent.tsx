@@ -15,6 +15,7 @@ import {
 import { catalogApi } from '@/lib/api'
 import { useCart } from '@/lib/cart-context'
 import { useAuth } from '@/lib/auth-context'
+import { useToast } from '@/components/ui/Toast'
 import { formatPrice, cn } from '@/lib/utils'
 import type { CategoryOut, ProductOut, PaginationMeta } from '@/types'
 
@@ -30,8 +31,8 @@ function ProductCard({ product }: { product: ProductOut }) {
   const { addItem } = useCart()
   const router = useRouter()
   const reduce = useReducedMotion()
+  const toast = useToast()
   const [adding, setAdding] = useState(false)
-  const [added, setAdded] = useState(false)
 
   async function handleAddToBag(e: React.MouseEvent) {
     e.preventDefault()
@@ -43,10 +44,9 @@ function ProductCard({ product }: { product: ProductOut }) {
     setAdding(true)
     try {
       await addItem(product.id, 1)
-      setAdded(true)
-      setTimeout(() => setAdded(false), 1800)
+      toast(`${product.name} added to bag`)
     } catch {
-      // silent — don't block navigation
+      toast('Could not add to bag', 'error')
     } finally {
       setAdding(false)
     }
@@ -79,10 +79,13 @@ function ProductCard({ product }: { product: ProductOut }) {
             <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800" />
           )}
 
-          {/* Out of stock overlay */}
+          {/* Out of stock overlay — solid bg with opacity class (hex vars don't work with /N) */}
           {outOfStock && (
-            <div className="absolute inset-0 bg-[var(--color-bg)]/70 flex items-center justify-center">
-              <span className="text-[11px] uppercase tracking-label text-[var(--color-muted)]">
+            <div className="absolute inset-0 bg-white/80 dark:bg-black/75 flex items-center justify-center">
+              <span
+                className="text-[11px] uppercase tracking-label text-zinc-500 dark:text-zinc-400"
+                style={{ textShadow: 'none' }}
+              >
                 Out of Stock
               </span>
             </div>
@@ -103,7 +106,11 @@ function ProductCard({ product }: { product: ProductOut }) {
                   : 'translate-y-full group-hover:translate-y-0'
               )}
             >
-              {adding ? '…' : added ? '✓ Added' : 'Add to Bag'}
+              {adding ? (
+                <span className="inline-block w-3 h-3 border border-current border-t-transparent animate-spin" />
+              ) : (
+                'Add to Bag'
+              )}
             </button>
           )}
         </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -8,7 +8,9 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Minus, Plus, Trash, ArrowRight, ShoppingBag } from '@phosphor-icons/react'
 import { useRequireAuth } from '@/hooks/use-require-auth'
 import { useCart } from '@/lib/cart-context'
+import { catalogApi } from '@/lib/api'
 import { formatPrice } from '@/lib/utils'
+import type { ProductOut } from '@/types'
 
 export default function CartPage() {
   const { isLoading: authLoading } = useRequireAuth()
@@ -16,6 +18,18 @@ export default function CartPage() {
   const router = useRouter()
   const [updatingId, setUpdatingId] = useState<number | null>(null)
   const [removingId, setRemovingId] = useState<number | null>(null)
+  const [crossSell, setCrossSell] = useState<ProductOut[]>([])
+
+  const isEmpty = !cart || cart.items.length === 0
+
+  useEffect(() => {
+    if (isEmpty && !isLoading) {
+      catalogApi
+        .getProducts({ page_size: 4, active_only: true })
+        .then(({ data }) => setCrossSell(data))
+        .catch(() => {})
+    }
+  }, [isEmpty, isLoading])
 
   if (authLoading || isLoading) return <CartSkeleton />
 
@@ -38,8 +52,6 @@ export default function CartPage() {
     }
   }
 
-  const isEmpty = !cart || cart.items.length === 0
-
   return (
     <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
@@ -60,7 +72,7 @@ export default function CartPage() {
         </div>
 
         {isEmpty ? (
-          <EmptyCart />
+          <EmptyCart crossSell={crossSell} />
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 items-start">
             {/* Items column */}
@@ -229,32 +241,81 @@ export default function CartPage() {
   )
 }
 
-function EmptyCart() {
+function EmptyCart({ crossSell }: { crossSell: ProductOut[] }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="flex flex-col items-center justify-center py-24 text-center"
     >
-      <ShoppingBag
-        size={44}
-        className="text-[var(--color-border-strong)] mb-6"
-        weight="thin"
-      />
-      <h2 className="text-[1.25rem] font-medium text-[var(--color-fg)] mb-2">
-        Your bag is empty
-      </h2>
-      <p className="text-[14px] text-[var(--color-muted)] mb-8 max-w-xs">
-        Discover our considered collection of menswear essentials.
-      </p>
-      <Link
-        href="/shop"
-        className="inline-flex items-center gap-2 h-11 px-8 bg-[var(--color-primary)] text-[var(--color-primary-fg)] text-[11px] font-medium uppercase tracking-label hover:opacity-80 transition-opacity"
-      >
-        Browse the Collection
-        <ArrowRight size={13} />
-      </Link>
+      {/* Empty message */}
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <ShoppingBag
+          size={44}
+          className="text-[var(--color-border-strong)] mb-6"
+          weight="thin"
+        />
+        <h2 className="text-[1.25rem] font-medium text-[var(--color-fg)] mb-2">
+          Your bag is empty
+        </h2>
+        <p className="text-[14px] text-[var(--color-muted)] mb-8 max-w-xs">
+          Discover our considered collection of menswear essentials.
+        </p>
+        <Link
+          href="/shop"
+          className="inline-flex items-center gap-2 h-11 px-8 bg-[var(--color-primary)] text-[var(--color-primary-fg)] text-[11px] font-medium uppercase tracking-label hover:opacity-80 transition-opacity"
+        >
+          Browse the Collection
+          <ArrowRight size={13} />
+        </Link>
+      </div>
+
+      {/* Cross-sell */}
+      {crossSell.length > 0 && (
+        <div className="mt-4 pt-12 border-t border-[var(--color-border)]">
+          <div className="flex items-center justify-between mb-8">
+            <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]">
+              You might like
+            </p>
+            <Link
+              href="/shop"
+              className="text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors flex items-center gap-1"
+            >
+              View all <ArrowRight size={11} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
+            {crossSell.map((product) => (
+              <Link key={product.id} href={`/shop/${product.id}`} className="group block">
+                <div className="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-900 mb-3">
+                  {product.image_url ? (
+                    <Image
+                      src={product.image_url}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800" />
+                  )}
+                </div>
+                <p className="text-[11px] uppercase tracking-label text-[var(--color-subtle)] mb-1">
+                  {product.category?.name ?? ''}
+                </p>
+                <div className="flex items-baseline justify-between gap-2">
+                  <p className="text-[14px] font-medium text-[var(--color-fg)] group-hover:text-[var(--color-muted)] transition-colors truncate">
+                    {product.name}
+                  </p>
+                  <p className="text-[13px] text-[var(--color-muted)] tabular-nums shrink-0">
+                    {formatPrice(product.price)}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </motion.div>
   )
 }
