@@ -128,7 +128,8 @@ uv run python -m app.db.seed
 - Admin endpoints: POST/PUT/DELETE on `/api/v1/catalog/categories` and `/api/v1/catalog/products` (require `is_admin=True`)
 
 ## Frontend Notes (Phase 5+)
-- Framework: Next.js 14, App Router, TypeScript, Tailwind v3, `darkMode: 'media'`
+- Framework: Next.js 14, App Router, TypeScript, Tailwind v3, `darkMode: 'class'` (driven by `next-themes`)
+- Theme: `ThemeProvider` (`src/components/layout/ThemeProvider.tsx`) wraps the tree; `suppressHydrationWarning` on `<html>`. `ThemeToggle` (`src/components/ui/ThemeToggle.tsx`) uses `resolvedTheme` + `mounted` guard. Theme persists via `localStorage`, defaults to system preference.
 - Font: Geist Sans via `geist` npm package + `next/font`. NOT Inter (per taste-skill)
 - Icons: `@phosphor-icons/react` exclusively. Do not mix with other icon libraries.
 - Motion: `motion/react` (Motion v11). Never `window.addEventListener('scroll')`. Use `useScroll` + `useMotionValueEvent` for scroll-driven state.

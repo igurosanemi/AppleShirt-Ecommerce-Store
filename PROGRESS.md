@@ -13,7 +13,8 @@
 | 6 | Frontend Auth Pages | Done |
 | 7 | Storefront | Done |
 | 8 | Cart + Checkout UI | Done |
-| 9 | Polish + E2E | Not started |
+| 9 | Dark / Light Mode + Home Refinement | Done |
+| 10 | Polish + E2E | Not started |
 
 ---
 
@@ -283,3 +284,30 @@
 - Related products: up to 3 from same category, filtered to exclude current product
 - Breadcrumb: Shop / Category / Product — links back to filtered shop views
 - Both Add to Bag success + error states with motion feedback
+
+---
+
+## Phase 9 — Dark / Light Mode + Home Refinement ✅
+
+**Status**: Done
+
+### Checklist
+- [x] `next-themes` installed
+- [x] `tailwind.config.ts` — `darkMode` switched from `'media'` to `'class'`
+- [x] `src/app/globals.css` — media-query dark selectors replaced with `.dark {}` class selectors; CSS custom property token set defined for `bg`, `surface`, `fg`, `muted`, `subtle`, `border`, `primary`
+- [x] `src/components/layout/ThemeProvider.tsx` — wraps `next-themes` `ThemeProvider` (`attribute="class"`, `defaultTheme="system"`, `enableSystem`)
+- [x] `src/app/layout.tsx` — `ThemeProvider` wraps the tree; `suppressHydrationWarning` on `<html>` (prevents React mismatch for class injection)
+- [x] `src/components/ui/ThemeToggle.tsx` — Sun/Moon icon toggle (Phosphor); `mounted` guard prevents hydration mismatch; `aria-label` + keyboard focusable
+- [x] `src/components/layout/Navbar.tsx` — `ThemeToggle` inserted in action-icons row
+- [x] `src/app/page.tsx` — home page enhanced: Featured Products section (4 cards, `ProductCard` component with category/price/hover), Trust Bar strip, stat block in Brand Statement, improved hero CTA layout with secondary "Outerwear" link
+- [x] TypeScript clean (exit code 0)
+- [x] PROGRESS.md + CLAUDE.md updated
+- [x] Git commit: `feat: phase 9 — dark/light mode + home refinement`
+
+### Notes
+- `next-themes` v0.x uses `attribute="class"` to inject `dark` class on `<html>` — compatible with Tailwind's `darkMode: 'class'`
+- Theme persists via `localStorage` (handled by next-themes internally); system preference is the default
+- `ThemeToggle` uses `resolvedTheme` (not `theme`) so it correctly reflects system default without a manual toggle
+- `mounted` guard in `ThemeToggle` renders a fixed-size empty span during SSR to prevent layout shift
+- All `dark:` Tailwind prefixes throughout the codebase continue to work unchanged — they now respond to the `.dark` class rather than a media query
+- Home page `ProductCard` uses static data (4 hero products) — links to live `/shop` rather than deep product links to avoid coupling to seed IDs

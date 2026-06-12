@@ -7,6 +7,7 @@ import { useScroll, useMotionValueEvent } from 'motion/react'
 import { ShoppingBag, UserCircle, List, X } from '@phosphor-icons/react'
 import { useAuth } from '@/lib/auth-context'
 import { useCart } from '@/lib/cart-context'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
@@ -67,6 +68,8 @@ export function Navbar() {
 
         {/* Action icons */}
         <div className="flex items-center gap-5">
+          <ThemeToggle />
+
           <Link
             href="/cart"
             aria-label={cartCount > 0 ? `Cart — ${cartCount} item${cartCount !== 1 ? 's' : ''}` : 'Cart'}
@@ -88,7 +91,6 @@ export function Navbar() {
             <UserCircle size={20} />
           </Link>
 
-          {/* Logout — visible only when authenticated */}
           {user && (
             <button
               onClick={handleLogout}

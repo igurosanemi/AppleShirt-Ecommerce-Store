@@ -5,8 +5,48 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowRight } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
+import { formatPrice } from '@/lib/utils'
 
 const EASE = [0.16, 1, 0.3, 1] as const
+
+// ---------------------------------------------------------------------------
+// Featured products — static showcase (links through to live shop)
+// ---------------------------------------------------------------------------
+
+const FEATURED = [
+  {
+    id: 'classic-white-oxford',
+    name: 'Classic White Oxford',
+    category: 'Shirts',
+    priceCents: 8500,
+    image: '/images/products/shirts/classic-white-oxford.jpg',
+    href: '/shop',
+  },
+  {
+    id: 'camel-overcoat',
+    name: 'Camel Overcoat',
+    category: 'Outerwear',
+    priceCents: 24900,
+    image: '/images/products/outerwear/camel-overcoat.jpg',
+    href: '/shop',
+  },
+  {
+    id: 'charcoal-dress-trousers',
+    name: 'Charcoal Dress Trousers',
+    category: 'Trousers',
+    priceCents: 12900,
+    image: '/images/products/trousers/charcoal-dress-trousers.jpg',
+    href: '/shop',
+  },
+  {
+    id: 'brushed-steel-watch',
+    name: 'Brushed Steel Watch',
+    category: 'Accessories',
+    priceCents: 18500,
+    image: '/images/products/accessories/brushed-steel-watch.jpg',
+    href: '/shop',
+  },
+]
 
 // ---------------------------------------------------------------------------
 // CollectionTile
@@ -41,7 +81,7 @@ function CollectionTile({
         sizes="(max-width: 768px) 50vw, 33vw"
         className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-zinc-950/10 to-transparent transition-opacity duration-300 group-hover:from-zinc-950/70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-zinc-950/10 to-transparent transition-opacity duration-300 group-hover:from-zinc-950/80" />
       <div className="absolute bottom-5 left-5 flex items-center gap-2">
         <span className="text-zinc-50 font-medium text-base tracking-tight">
           {title}
@@ -53,6 +93,62 @@ function CollectionTile({
         />
       </div>
     </Link>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// ProductCard
+// ---------------------------------------------------------------------------
+
+function ProductCard({
+  name,
+  category,
+  priceCents,
+  image,
+  href,
+  delay = 0,
+}: {
+  name: string
+  category: string
+  priceCents: number
+  image: string
+  href: string
+  delay?: number
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay, ease: EASE }}
+    >
+      <Link href={href} className="group block">
+        <div className="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-900 mb-4">
+          <Image
+            src={image}
+            alt={name}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          />
+          {/* Subtle dark overlay on hover for depth */}
+          <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/10 transition-colors duration-300" />
+        </div>
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1">
+              {category}
+            </p>
+            <p className="text-sm font-medium text-zinc-950 dark:text-zinc-50 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-200">
+              {name}
+            </p>
+          </div>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 shrink-0 mt-5 tabular-nums">
+            {formatPrice(priceCents)}
+          </p>
+        </div>
+      </Link>
+    </motion.div>
   )
 }
 
@@ -88,7 +184,7 @@ export default function HomePage() {
       <section className="relative min-h-[100dvh] grid grid-cols-1 lg:grid-cols-[55fr_45fr] overflow-hidden">
         {/* Left: text panel */}
         <div className="relative z-10 flex flex-col justify-end lg:justify-center px-8 pt-24 pb-16 lg:px-16 xl:px-24 lg:pt-24 lg:pb-0">
-          {/* Mobile hero image sits behind text */}
+          {/* Mobile: hero image sits behind text */}
           <div className="absolute inset-0 lg:hidden">
             <Image
               src="/images/hero/hero-editorial.jpg"
@@ -98,20 +194,20 @@ export default function HomePage() {
               sizes="100vw"
               className="object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/30 to-zinc-950/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/30 to-zinc-950/10" />
           </div>
 
           <div className="relative">
             <motion.p
               {...fadeUp(0.05)}
-              className="text-[10px] uppercase tracking-widest text-zinc-400 lg:text-zinc-400 dark:text-zinc-400 mb-4"
+              className="text-[10px] uppercase tracking-widest text-zinc-400 mb-4"
             >
               New Collection — 2025
             </motion.p>
 
             <motion.h1
               {...fadeUp(0.15)}
-              className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tightest leading-[1.04] text-zinc-50 lg:text-zinc-950 dark:text-zinc-50"
+              className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tightest leading-[1.04] text-zinc-50 lg:text-zinc-950 dark:lg:text-zinc-50"
             >
               Dressed
               <br />
@@ -120,18 +216,25 @@ export default function HomePage() {
 
             <motion.p
               {...fadeUp(0.3)}
-              className="mt-6 text-base md:text-lg text-zinc-300 lg:text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-[40ch]"
+              className="mt-6 text-base md:text-lg text-zinc-300 lg:text-zinc-500 dark:lg:text-zinc-400 leading-relaxed max-w-[40ch]"
             >
               Considered menswear. Shirts, trousers, and accessories that outlast trends.
             </motion.p>
 
-            <motion.div {...fadeUp(0.45)} className="mt-10">
+            <motion.div {...fadeUp(0.45)} className="mt-10 flex items-center gap-6">
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2.5 bg-zinc-50 lg:bg-zinc-950 dark:bg-zinc-50 text-zinc-950 lg:text-zinc-50 dark:text-zinc-950 px-7 py-3.5 text-sm font-medium tracking-wide uppercase hover:bg-zinc-200 lg:hover:bg-zinc-800 dark:hover:bg-zinc-200 active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center gap-2.5 bg-zinc-50 lg:bg-zinc-950 dark:lg:bg-zinc-50 text-zinc-950 lg:text-zinc-50 dark:lg:text-zinc-950 px-7 py-3.5 text-sm font-medium tracking-wide uppercase hover:opacity-90 active:scale-[0.98] transition-all duration-200"
               >
                 Shop Collection
                 <ArrowRight size={15} weight="bold" />
+              </Link>
+              <Link
+                href="/shop?category=outerwear"
+                className="hidden lg:inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+              >
+                Outerwear
+                <ArrowRight size={11} />
               </Link>
             </motion.div>
           </div>
@@ -146,7 +249,7 @@ export default function HomePage() {
         >
           <Image
             src="/images/hero/hero-editorial.jpg"
-            alt="AppleShirt editorial"
+            alt="Man in tailored AppleShirt clothing, editorial shot"
             fill
             priority
             sizes="45vw"
@@ -156,7 +259,24 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* COLLECTIONS GRID                                                     */}
+      {/* TRUST BAR                                                            */}
+      {/* ------------------------------------------------------------------ */}
+      <section className="border-y border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
+        <div className="max-w-[1400px] mx-auto px-8 lg:px-16 xl:px-24 py-5 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 lg:gap-20">
+          {[
+            { label: 'Free shipping over $150' },
+            { label: 'Premium natural fabrics' },
+            { label: 'Easy 30-day returns' },
+          ].map(({ label }) => (
+            <p key={label} className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+              {label}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* FEATURED PRODUCTS                                                    */}
       {/* ------------------------------------------------------------------ */}
       <section className="px-8 lg:px-16 xl:px-24 py-20 lg:py-28">
         <div className="flex items-end justify-between mb-10">
@@ -164,7 +284,7 @@ export default function HomePage() {
             {...revealOnScroll(0)}
             className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50"
           >
-            Shop the collection
+            Featured pieces
           </motion.h2>
           <motion.div {...revealOnScroll(0.05)}>
             <Link
@@ -172,6 +292,43 @@ export default function HomePage() {
               className="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
             >
               View all
+              <ArrowRight size={12} />
+            </Link>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6">
+          {FEATURED.map((product, i) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              category={product.category}
+              priceCents={product.priceCents}
+              image={product.image}
+              href={product.href}
+              delay={i * 0.08}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* COLLECTIONS GRID                                                     */}
+      {/* ------------------------------------------------------------------ */}
+      <section className="px-8 lg:px-16 xl:px-24 py-8 lg:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <div className="flex items-end justify-between mb-10">
+          <motion.h2
+            {...revealOnScroll(0)}
+            className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50"
+          >
+            Shop by category
+          </motion.h2>
+          <motion.div {...revealOnScroll(0.05)}>
+            <Link
+              href="/shop"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+            >
+              All categories
               <ArrowRight size={12} />
             </Link>
           </motion.div>
@@ -242,7 +399,22 @@ export default function HomePage() {
             crafted from materials chosen for longevity and precision cut for a modern fit.
           </motion.p>
 
-          <motion.div {...revealOnScroll(0.28)} className="mt-12">
+          <motion.div {...revealOnScroll(0.28)} className="mt-12 flex flex-wrap gap-8">
+            {[
+              { stat: '100%', desc: 'Natural fibres' },
+              { stat: '30+', desc: 'Styles per season' },
+              { stat: '2-yr', desc: 'Quality guarantee' },
+            ].map(({ stat, desc }) => (
+              <div key={stat}>
+                <p className="text-3xl font-medium tracking-tightest text-zinc-950 dark:text-zinc-50">
+                  {stat}
+                </p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">{desc}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div {...revealOnScroll(0.35)} className="mt-12">
             <Link
               href="/shop"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-950 dark:text-zinc-50 border-b border-zinc-950 dark:border-zinc-50 pb-0.5 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-400 dark:hover:text-zinc-500 transition-all duration-200"
@@ -255,7 +427,7 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* EDITORIAL STRIP — 3 product images in a horizontal band             */}
+      {/* EDITORIAL STRIP — 3 images in a horizontal band                     */}
       {/* ------------------------------------------------------------------ */}
       <section className="overflow-hidden border-t border-zinc-200 dark:border-zinc-800">
         <motion.div
@@ -266,9 +438,9 @@ export default function HomePage() {
           className="flex"
         >
           {[
-            { src: '/images/products/outerwear/olive-bomber.jpg', alt: 'Olive Bomber Jacket' },
-            { src: '/images/products/shirts/slim-check-dress.jpg', alt: 'Slim Check Dress Shirt' },
-            { src: '/images/products/outerwear/blue-denim-jacket.jpg', alt: 'Washed Denim Jacket' },
+            { src: '/images/products/outerwear/olive-bomber.jpg', alt: 'Olive Bomber Jacket on model' },
+            { src: '/images/products/shirts/slim-check-dress.jpg', alt: 'Slim Check Dress Shirt styled' },
+            { src: '/images/products/outerwear/blue-denim-jacket.jpg', alt: 'Washed Denim Jacket editorial' },
           ].map(({ src, alt }, i) => (
             <motion.div
               key={src}
@@ -288,7 +460,7 @@ export default function HomePage() {
             </motion.div>
           ))}
         </motion.div>
-        <div className="px-8 lg:px-16 xl:px-24 py-8 flex items-center justify-between">
+        <div className="px-8 lg:px-16 xl:px-24 py-8 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800">
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             The full collection, curated for the modern wardrobe.
           </p>
