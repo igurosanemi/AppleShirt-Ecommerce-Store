@@ -41,16 +41,18 @@ export default function CartPage() {
   const isEmpty = !cart || cart.items.length === 0
 
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+    <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
 
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">Your Selection</p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] mb-3">
+            Your Selection
+          </p>
+          <h1 className="text-[1.625rem] md:text-[2rem] font-medium tracking-[-0.02em] text-[var(--color-fg)]">
             Shopping Bag
             {!isEmpty && (
-              <span className="ml-3 text-base font-normal text-zinc-400 dark:text-zinc-500 tabular-nums">
+              <span className="ml-3 text-[1rem] font-normal text-[var(--color-muted)] tabular-nums">
                 {cart.item_count} {cart.item_count === 1 ? 'item' : 'items'}
               </span>
             )}
@@ -60,10 +62,10 @@ export default function CartPage() {
         {isEmpty ? (
           <EmptyCart />
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 items-start">
             {/* Items column */}
             <div>
-              <div className="border-t border-zinc-200 dark:border-zinc-800">
+              <div className="border-t border-[var(--color-border)]">
                 <AnimatePresence initial={false}>
                   {cart.items.map((item) => (
                     <motion.div
@@ -73,7 +75,7 @@ export default function CartPage() {
                       animate={{ opacity: removingId === item.product_id ? 0.4 : 1, y: 0 }}
                       exit={{ opacity: 0, height: 0, marginBottom: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="border-b border-zinc-200 dark:border-zinc-800 py-6"
+                      className="border-b border-[var(--color-border)] py-6"
                     >
                       <div className="flex gap-5">
                         {/* Image */}
@@ -89,7 +91,7 @@ export default function CartPage() {
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center">
-                                <ShoppingBag size={24} className="text-zinc-300 dark:text-zinc-700" />
+                                <ShoppingBag size={22} className="text-[var(--color-subtle)]" />
                               </div>
                             )}
                           </div>
@@ -100,29 +102,29 @@ export default function CartPage() {
                           <div>
                             <Link
                               href={`/shop/${item.product_id}`}
-                              className="text-sm font-medium text-zinc-950 dark:text-zinc-50 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors line-clamp-2"
+                              className="text-[15px] font-medium text-[var(--color-fg)] hover:text-[var(--color-muted)] transition-colors line-clamp-2"
                             >
                               {item.name}
                             </Link>
-                            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                            <p className="mt-1 text-[13px] text-[var(--color-muted)]">
                               {formatPrice(item.price)} each
                             </p>
                           </div>
 
                           <div className="flex items-center justify-between mt-4">
                             {/* Qty stepper */}
-                            <div className="flex items-center border border-zinc-200 dark:border-zinc-800">
+                            <div className="flex items-center border border-[var(--color-border)]">
                               <button
                                 onClick={() => handleQtyChange(item.product_id, item.quantity - 1)}
                                 disabled={item.quantity <= 1 || updatingId === item.product_id}
                                 aria-label="Decrease quantity"
-                                className="w-9 h-9 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                className="w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-fg)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                               >
-                                <Minus size={14} />
+                                <Minus size={13} />
                               </button>
-                              <span className="w-9 h-9 flex items-center justify-center text-sm font-medium tabular-nums text-zinc-950 dark:text-zinc-50 border-x border-zinc-200 dark:border-zinc-800">
+                              <span className="w-9 h-9 flex items-center justify-center text-[14px] font-medium tabular-nums text-[var(--color-fg)] border-x border-[var(--color-border)]">
                                 {updatingId === item.product_id ? (
-                                  <span className="w-3 h-3 border border-zinc-400 border-t-transparent animate-spin" />
+                                  <span className="w-3 h-3 border border-current border-t-transparent animate-spin" />
                                 ) : (
                                   item.quantity
                                 )}
@@ -131,24 +133,24 @@ export default function CartPage() {
                                 onClick={() => handleQtyChange(item.product_id, item.quantity + 1)}
                                 disabled={item.quantity >= 10 || updatingId === item.product_id}
                                 aria-label="Increase quantity"
-                                className="w-9 h-9 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                className="w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-fg)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                               >
-                                <Plus size={14} />
+                                <Plus size={13} />
                               </button>
                             </div>
 
                             {/* Subtotal + remove */}
                             <div className="flex items-center gap-4">
-                              <span className="text-sm font-semibold tabular-nums text-zinc-950 dark:text-zinc-50">
+                              <span className="text-[15px] font-medium tabular-nums text-[var(--color-fg)]">
                                 {formatPrice(item.subtotal)}
                               </span>
                               <button
                                 onClick={() => handleRemove(item.product_id)}
                                 disabled={removingId === item.product_id}
                                 aria-label={`Remove ${item.name}`}
-                                className="text-zinc-300 dark:text-zinc-600 hover:text-red-500 dark:hover:text-red-400 disabled:opacity-40 transition-colors"
+                                className="text-[var(--color-subtle)] hover:text-red-500 dark:hover:text-red-400 disabled:opacity-40 transition-colors"
                               >
-                                <Trash size={16} />
+                                <Trash size={15} />
                               </button>
                             </div>
                           </div>
@@ -162,7 +164,7 @@ export default function CartPage() {
               <div className="mt-6">
                 <Link
                   href="/shop"
-                  className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+                  className="text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
                 >
                   ← Continue shopping
                 </Link>
@@ -171,51 +173,51 @@ export default function CartPage() {
 
             {/* Summary panel */}
             <div className="lg:sticky lg:top-28">
-              <div className="border border-zinc-200 dark:border-zinc-800 p-6">
-                <h2 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-6">
+              <div className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+                <h2 className="text-[11px] uppercase tracking-label font-medium text-[var(--color-muted)] mb-6">
                   Order Summary
                 </h2>
 
                 <div className="space-y-3 mb-6">
                   {cart.items.map((item) => (
-                    <div key={item.product_id} className="flex justify-between text-sm">
-                      <span className="text-zinc-500 dark:text-zinc-400 truncate pr-4">
+                    <div key={item.product_id} className="flex justify-between text-[14px]">
+                      <span className="text-[var(--color-muted)] truncate pr-4">
                         {item.name}
                         {item.quantity > 1 && (
-                          <span className="text-zinc-400 dark:text-zinc-500"> ×{item.quantity}</span>
+                          <span className="text-[var(--color-subtle)]"> ×{item.quantity}</span>
                         )}
                       </span>
-                      <span className="shrink-0 tabular-nums text-zinc-700 dark:text-zinc-300">
+                      <span className="shrink-0 tabular-nums text-[var(--color-fg)]">
                         {formatPrice(item.subtotal)}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="border-t border-zinc-200 dark:border-zinc-800 pt-4 mb-8">
+                <div className="border-t border-[var(--color-border)] pt-4 mb-7">
                   <div className="flex justify-between">
-                    <span className="text-sm font-medium text-zinc-950 dark:text-zinc-50">Total</span>
-                    <span className="text-lg font-semibold tabular-nums text-zinc-950 dark:text-zinc-50">
+                    <span className="text-[14px] font-medium text-[var(--color-fg)]">Total</span>
+                    <span className="text-[18px] font-medium tabular-nums text-[var(--color-fg)]">
                       {formatPrice(cart.total)}
                     </span>
                   </div>
-                  <p className="mt-1.5 text-xs text-zinc-400 dark:text-zinc-500">
+                  <p className="mt-1.5 text-[12px] text-[var(--color-subtle)]">
                     Shipping calculated at checkout
                   </p>
                 </div>
 
                 <button
                   onClick={() => router.push('/checkout')}
-                  className="w-full h-12 bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 text-sm font-medium tracking-wide flex items-center justify-center gap-2 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors group"
+                  className="w-full h-11 bg-[var(--color-primary)] text-[var(--color-primary-fg)] text-[11px] font-medium uppercase tracking-label flex items-center justify-center gap-2 hover:opacity-80 transition-opacity group"
                 >
                   Proceed to Checkout
                   <ArrowRight
-                    size={16}
+                    size={13}
                     className="group-hover:translate-x-0.5 transition-transform duration-150"
                   />
                 </button>
 
-                <p className="mt-4 text-center text-xs text-zinc-400 dark:text-zinc-500">
+                <p className="mt-4 text-center text-[12px] text-[var(--color-subtle)]">
                   Secure checkout. Mock payment for demo.
                 </p>
               </div>
@@ -236,22 +238,22 @@ function EmptyCart() {
       className="flex flex-col items-center justify-center py-24 text-center"
     >
       <ShoppingBag
-        size={48}
-        className="text-zinc-200 dark:text-zinc-800 mb-6"
+        size={44}
+        className="text-[var(--color-border-strong)] mb-6"
         weight="thin"
       />
-      <h2 className="text-xl font-medium text-zinc-950 dark:text-zinc-50 mb-2">
+      <h2 className="text-[1.25rem] font-medium text-[var(--color-fg)] mb-2">
         Your bag is empty
       </h2>
-      <p className="text-sm text-zinc-400 dark:text-zinc-500 mb-8 max-w-xs">
+      <p className="text-[14px] text-[var(--color-muted)] mb-8 max-w-xs">
         Discover our considered collection of menswear essentials.
       </p>
       <Link
         href="/shop"
-        className="inline-flex items-center gap-2 bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 px-8 h-11 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
+        className="inline-flex items-center gap-2 h-11 px-8 bg-[var(--color-primary)] text-[var(--color-primary-fg)] text-[11px] font-medium uppercase tracking-label hover:opacity-80 transition-opacity"
       >
         Browse the Collection
-        <ArrowRight size={14} />
+        <ArrowRight size={13} />
       </Link>
     </motion.div>
   )
@@ -259,16 +261,16 @@ function EmptyCart() {
 
 function CartSkeleton() {
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+    <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
         <div className="mb-12">
-          <div className="h-3 w-20 bg-zinc-100 dark:bg-zinc-900 animate-pulse mb-3" />
-          <div className="h-9 w-48 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="h-2.5 w-20 bg-zinc-100 dark:bg-zinc-900 animate-pulse mb-4" />
+          <div className="h-8 w-48 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12">
-          <div className="border-t border-zinc-200 dark:border-zinc-800">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12">
+          <div className="border-t border-[var(--color-border)]">
             {[1, 2].map((i) => (
-              <div key={i} className="border-b border-zinc-200 dark:border-zinc-800 py-6 flex gap-5">
+              <div key={i} className="border-b border-[var(--color-border)] py-6 flex gap-5">
                 <div className="w-28 h-36 bg-zinc-100 dark:bg-zinc-900 animate-pulse shrink-0" />
                 <div className="flex-1 space-y-3 py-1">
                   <div className="h-4 w-40 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
@@ -277,11 +279,10 @@ function CartSkeleton() {
               </div>
             ))}
           </div>
-          <div className="border border-zinc-200 dark:border-zinc-800 p-6 space-y-4">
-            <div className="h-3 w-24 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6 space-y-4">
+            <div className="h-2.5 w-24 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
             <div className="h-4 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
-            <div className="h-4 w-3/4 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
-            <div className="h-12 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse mt-8" />
+            <div className="h-11 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse mt-8" />
           </div>
         </div>
       </div>

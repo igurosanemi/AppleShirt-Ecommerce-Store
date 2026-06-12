@@ -44,13 +44,15 @@ export default function OrdersPage() {
   if (authLoading) return <OrdersSkeleton />
 
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20">
-      <div className="max-w-[900px] mx-auto px-6 md:px-10 lg:px-16">
+    <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
+      <div className="max-w-[900px] mx-auto px-6 md:px-12 lg:px-20">
 
         {/* Header */}
         <div className="mb-10">
-          <p className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">Account</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] mb-3">
+            Account
+          </p>
+          <h1 className="text-[1.625rem] md:text-[2rem] font-medium tracking-[-0.02em] text-[var(--color-fg)]">
             Order History
           </h1>
         </div>
@@ -68,15 +70,15 @@ export default function OrdersPage() {
             transition={{ duration: 0.3 }}
           >
             {/* Desktop table header */}
-            <div className="hidden md:grid grid-cols-[80px_1fr_140px_120px_80px] gap-4 px-5 pb-3 border-b border-zinc-200 dark:border-zinc-800">
-              <span className="text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Order</span>
-              <span className="text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Date</span>
-              <span className="text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Status</span>
-              <span className="text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500 text-right">Total</span>
-              <span className="sr-only">Actions</span>
+            <div className="hidden md:grid grid-cols-[80px_1fr_140px_120px_80px] gap-4 px-5 pb-3 border-b border-[var(--color-border)]">
+              {['Order', 'Date', 'Status', 'Total', ''].map((col) => (
+                <span key={col} className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] last:sr-only">
+                  {col || <span className="sr-only">Actions</span>}
+                </span>
+              ))}
             </div>
 
-            <div className="divide-y divide-zinc-100 dark:divide-zinc-900">
+            <div className="divide-y divide-[var(--color-border)]">
               {orders.map((order, i) => (
                 <motion.div
                   key={order.id}
@@ -86,22 +88,22 @@ export default function OrdersPage() {
                 >
                   {/* Desktop row */}
                   <div className="hidden md:grid grid-cols-[80px_1fr_140px_120px_80px] gap-4 px-5 py-5 items-center hover:bg-zinc-100/60 dark:hover:bg-zinc-900/40 transition-colors group">
-                    <span className="text-sm font-medium tabular-nums text-zinc-950 dark:text-zinc-50">
+                    <span className="text-[14px] font-medium tabular-nums text-[var(--color-fg)]">
                       #{order.id}
                     </span>
-                    <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                    <span className="text-[13px] text-[var(--color-muted)]">
                       {new Date(order.created_at).toLocaleDateString('en-GB', {
                         day: 'numeric', month: 'short', year: 'numeric',
                       })}
                     </span>
                     <StatusBadge status={order.status} />
-                    <span className="text-sm font-semibold tabular-nums text-zinc-950 dark:text-zinc-50 text-right">
+                    <span className="text-[14px] font-medium tabular-nums text-[var(--color-fg)] text-right">
                       {formatPrice(order.total)}
                     </span>
                     <div className="flex justify-end">
                       <Link
                         href={`/orders/${order.id}`}
-                        className="text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors flex items-center gap-1"
+                        className="text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors flex items-center gap-1"
                         aria-label={`View order #${order.id}`}
                       >
                         View
@@ -115,9 +117,9 @@ export default function OrdersPage() {
                     href={`/orders/${order.id}`}
                     className="md:hidden flex items-start justify-between py-5 px-1 gap-4 hover:bg-zinc-100/60 dark:hover:bg-zinc-900/40 transition-colors"
                   >
-                    <div className="space-y-1">
-                      <p className="text-sm font-medium text-zinc-950 dark:text-zinc-50">Order #{order.id}</p>
-                      <p className="text-xs text-zinc-400 dark:text-zinc-500">
+                    <div className="space-y-1.5">
+                      <p className="text-[14px] font-medium text-[var(--color-fg)]">Order #{order.id}</p>
+                      <p className="text-[12px] text-[var(--color-muted)]">
                         {new Date(order.created_at).toLocaleDateString('en-GB', {
                           day: 'numeric', month: 'short', year: 'numeric',
                         })}
@@ -125,10 +127,10 @@ export default function OrdersPage() {
                       <StatusBadge status={order.status} />
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-sm font-semibold tabular-nums text-zinc-950 dark:text-zinc-50">
+                      <p className="text-[14px] font-medium tabular-nums text-[var(--color-fg)]">
                         {formatPrice(order.total)}
                       </p>
-                      <ArrowRight size={14} className="ml-auto mt-2 text-zinc-400 dark:text-zinc-500" />
+                      <ArrowRight size={13} className="ml-auto mt-2 text-[var(--color-muted)]" />
                     </div>
                   </Link>
                 </motion.div>
@@ -141,18 +143,18 @@ export default function OrdersPage() {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-1.5 text-[13px] text-[var(--color-muted)] hover:text-[var(--color-fg)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   <CaretLeft size={12} />
                   Previous
                 </button>
-                <span className="text-xs text-zinc-400 dark:text-zinc-500 tabular-nums">
+                <span className="text-[11px] uppercase tracking-label text-[var(--color-subtle)] tabular-nums">
                   Page {meta.page} of {meta.total_pages}
                 </span>
                 <button
                   onClick={() => setPage((p) => Math.min(meta.total_pages, p + 1))}
                   disabled={page === meta.total_pages}
-                  className="flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-1.5 text-[13px] text-[var(--color-muted)] hover:text-[var(--color-fg)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   Next
                   <CaretRight size={12} />
@@ -174,7 +176,7 @@ function StatusBadge({ status }: { status: string }) {
   }
   const cls = map[status.toLowerCase()] ?? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800'
   return (
-    <span className={`inline-flex px-2 py-0.5 text-[10px] uppercase tracking-wider border ${cls}`}>
+    <span className={`inline-flex px-2 py-0.5 text-[10px] uppercase tracking-label border ${cls}`}>
       {status}
     </span>
   )
@@ -188,17 +190,17 @@ function EmptyState() {
       transition={{ duration: 0.4 }}
       className="flex flex-col items-center justify-center py-24 text-center"
     >
-      <Package size={48} className="text-zinc-200 dark:text-zinc-800 mb-6" weight="thin" />
-      <h2 className="text-xl font-medium text-zinc-950 dark:text-zinc-50 mb-2">No orders yet</h2>
-      <p className="text-sm text-zinc-400 dark:text-zinc-500 mb-8 max-w-xs">
+      <Package size={44} className="text-[var(--color-border-strong)] mb-6" weight="thin" />
+      <h2 className="text-[1.25rem] font-medium text-[var(--color-fg)] mb-2">No orders yet</h2>
+      <p className="text-[14px] text-[var(--color-muted)] mb-8 max-w-xs">
         When you place your first order, it will appear here.
       </p>
       <Link
         href="/shop"
-        className="inline-flex items-center gap-2 bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 px-8 h-11 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
+        className="inline-flex items-center gap-2 h-11 px-8 bg-[var(--color-primary)] text-[var(--color-primary-fg)] text-[11px] font-medium uppercase tracking-label hover:opacity-80 transition-opacity"
       >
         Browse the Collection
-        <ArrowRight size={14} />
+        <ArrowRight size={13} />
       </Link>
     </motion.div>
   )
@@ -207,10 +209,10 @@ function EmptyState() {
 function ErrorState({ onRetry }: { onRetry: () => void }) {
   return (
     <div className="py-16 text-center">
-      <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Failed to load orders.</p>
+      <p className="text-[14px] text-[var(--color-muted)] mb-4">Failed to load orders.</p>
       <button
         onClick={onRetry}
-        className="text-xs uppercase tracking-widest text-zinc-950 dark:text-zinc-50 underline underline-offset-2"
+        className="text-[11px] uppercase tracking-label text-[var(--color-fg)] underline underline-offset-2"
       >
         Try again
       </button>
@@ -220,7 +222,7 @@ function ErrorState({ onRetry }: { onRetry: () => void }) {
 
 function OrdersSkeleton({ inline }: { inline?: boolean }) {
   const content = (
-    <div className="divide-y divide-zinc-100 dark:divide-zinc-900">
+    <div className="divide-y divide-[var(--color-border)]">
       {[1, 2, 3, 4].map((i) => (
         <div key={i} className="py-5 flex justify-between">
           <div className="space-y-2">
@@ -236,11 +238,11 @@ function OrdersSkeleton({ inline }: { inline?: boolean }) {
   if (inline) return content
 
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20">
-      <div className="max-w-[900px] mx-auto px-6 md:px-10 lg:px-16">
+    <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
+      <div className="max-w-[900px] mx-auto px-6 md:px-12 lg:px-20">
         <div className="mb-10 space-y-3">
-          <div className="h-3 w-20 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
-          <div className="h-9 w-40 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="h-2.5 w-20 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="h-8 w-40 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
         </div>
         {content}
       </div>

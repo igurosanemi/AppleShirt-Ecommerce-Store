@@ -12,9 +12,21 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
+        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
       },
       letterSpacing: {
         tightest: '-0.04em',
+        display: '-0.025em',
+        label: '0.16em',
+      },
+      animation: {
+        marquee: 'marquee 36s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
       },
     },
   },

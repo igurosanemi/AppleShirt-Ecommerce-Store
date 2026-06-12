@@ -130,10 +130,10 @@ uv run python -m app.db.seed
 ## Frontend Notes (Phase 5+)
 - Framework: Next.js 14, App Router, TypeScript, Tailwind v3, `darkMode: 'class'` (driven by `next-themes`)
 - Theme: `ThemeProvider` (`src/components/layout/ThemeProvider.tsx`) wraps the tree; `suppressHydrationWarning` on `<html>`. `ThemeToggle` (`src/components/ui/ThemeToggle.tsx`) uses `resolvedTheme` + `mounted` guard. Theme persists via `localStorage`, defaults to system preference.
-- Font: Geist Sans via `geist` npm package + `next/font`. NOT Inter (per taste-skill)
+- Fonts: Geist Sans (`--font-geist-sans`) for utility text + Cormorant Garamond (`--font-cormorant`, via `next/font/google`) for display/editorial moments. Use `font-display` Tailwind class for Cormorant. NOT Inter.
 - Icons: `@phosphor-icons/react` exclusively. Do not mix with other icon libraries.
 - Motion: `motion/react` (Motion v11). Never `window.addEventListener('scroll')`. Use `useScroll` + `useMotionValueEvent` for scroll-driven state.
-- Design palette: Cold Luxury — zinc-50/zinc-950 monochrome. Banned warm beige/brass family.
+- Design palette: "Zero Noise — Editorial Cold". CSS custom property token system (see globals.css). Banned warm beige/brass family. Zinc scale used only for `dark:` Tailwind overrides on status badge colors; all other colors use `var(--color-*)` tokens.
 - `src/types/index.ts` — all backend types. Prices are `number` (integer cents). Never use `number` for a price without noting it's cents.
 - `src/lib/api.ts` — typed fetch wrappers (`authApi`, `catalogApi`, `cartApi`, `ordersApi`). Uses `credentials: 'include'` for cookie; `Authorization: Bearer` header for token.
 - `src/lib/auth-context.tsx` — `AuthProvider` manages in-memory access token + refresh from httpOnly cookie on mount. Access token NEVER in localStorage.
@@ -160,3 +160,11 @@ uv run python -m app.db.seed
 - ShopContent: dedicated error state (WarningCircle icon + Retry button) — distinguishes API failure from genuine no-results.
 - ShopContent: search inputs have visually-hidden `<label>` (`sr-only`) for screen reader accessibility. Category buttons have `aria-current="true"` when active.
 - Seed data: 19 products total, per-slug idempotency (safe to re-run). Includes `stock=0` items (OOS display) and `stock=1–4` items (low-stock amber warning).
+
+## Frontend Notes (Phase 11 — Design Overhaul)
+- CSS token system in `globals.css`: `--color-bg`, `--color-surface`, `--color-fg`, `--color-muted`, `--color-subtle`, `--color-border`, `--color-border-strong`, `--color-primary`, `--color-primary-fg`. All pages use these — do not add hardcoded zinc classes for main colors.
+- Typography: Cormorant (`font-display`) for all editorial H1s and product names. Label token: `text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]`. Utility page H1: `text-[1.625rem] md:text-[2rem] font-medium tracking-[-0.02em]`.
+- Marquee strip on home page only — pure CSS `animate-marquee` with duplicate content for seamless loop. `aria-hidden="true"` on both copies. Gated by `@media (prefers-reduced-motion)` in globals.css.
+- `Button.tsx`: `h-11`, label token sizing, CSS var colors for both `primary` and `ghost` variants.
+- `Input.tsx`: `h-11`, CSS var colors, focus state → `border-[var(--color-fg)]`.
+- All pages use `bg-[var(--color-bg)]` for page background and `bg-[var(--color-surface)]` for panels/cards.

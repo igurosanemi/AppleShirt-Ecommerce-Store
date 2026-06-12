@@ -117,15 +117,15 @@ export default function RegisterPage() {
         {/* Brand mark */}
         <Link
           href="/"
-          className="block text-center mb-10 text-base font-semibold tracking-tight text-zinc-950 dark:text-zinc-50"
+          className="block text-center mb-10 text-[11px] uppercase tracking-label font-medium text-[var(--color-fg)]"
         >
           AppleShirt
         </Link>
 
-        <h1 className="text-2xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50 mb-1">
+        <h1 className="text-[1.625rem] font-medium tracking-[-0.02em] text-[var(--color-fg)] mb-1">
           Create an account.
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-8">
+        <p className="text-[14px] text-[var(--color-muted)] mb-8">
           Join AppleShirt to save your cart and track orders.
         </p>
 
@@ -144,7 +144,7 @@ export default function RegisterPage() {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="fullName"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]"
             >
               Full name
             </label>
@@ -169,7 +169,7 @@ export default function RegisterPage() {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="email"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]"
             >
               Email address
             </label>
@@ -193,7 +193,7 @@ export default function RegisterPage() {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="password"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]"
             >
               Password
             </label>
@@ -210,7 +210,7 @@ export default function RegisterPage() {
                 {fieldErrors.password}
               </p>
             ) : (
-              <p className="text-xs text-zinc-400 dark:text-zinc-600">
+              <p className="text-[12px] text-[var(--color-subtle)]">
                 At least 8 characters
               </p>
             )}
@@ -220,7 +220,7 @@ export default function RegisterPage() {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="confirmPassword"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]"
             >
               Confirm password
             </label>
@@ -244,11 +244,11 @@ export default function RegisterPage() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="mt-6 text-center text-[13px] text-[var(--color-muted)]">
           Already have an account?{' '}
           <Link
             href="/login"
-            className="text-zinc-950 dark:text-zinc-50 underline underline-offset-2 hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors"
+            className="text-[var(--color-fg)] underline underline-offset-2 hover:text-[var(--color-muted)] transition-colors"
           >
             Sign in
           </Link>

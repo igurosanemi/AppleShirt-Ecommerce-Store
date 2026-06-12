@@ -10,7 +10,7 @@ import { formatPrice } from '@/lib/utils'
 const EASE = [0.16, 1, 0.3, 1] as const
 
 // ---------------------------------------------------------------------------
-// Featured products — static showcase (links through to live shop)
+// Featured products — static showcase
 // ---------------------------------------------------------------------------
 
 const FEATURED = [
@@ -48,6 +48,8 @@ const FEATURED = [
   },
 ]
 
+const MARQUEE_TEXT = 'CONSIDERED MENSWEAR · DRESSED WITH INTENT · NEW COLLECTION 2025 · FREE SHIPPING OVER $150 · '
+
 // ---------------------------------------------------------------------------
 // CollectionTile
 // ---------------------------------------------------------------------------
@@ -69,7 +71,8 @@ function CollectionTile({
     <Link
       href={href}
       className={cn(
-        'relative group overflow-hidden bg-zinc-100 dark:bg-zinc-900 block',
+        'relative group overflow-hidden block',
+        'bg-zinc-100 dark:bg-zinc-900',
         className
       )}
     >
@@ -83,11 +86,11 @@ function CollectionTile({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-zinc-950/10 to-transparent transition-opacity duration-300 group-hover:from-zinc-950/80" />
       <div className="absolute bottom-5 left-5 flex items-center gap-2">
-        <span className="text-zinc-50 font-medium text-base tracking-tight">
+        <span className="text-zinc-50 text-[11px] font-medium uppercase tracking-label">
           {title}
         </span>
         <ArrowRight
-          size={14}
+          size={12}
           weight="bold"
           className="text-zinc-50 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
         />
@@ -119,7 +122,7 @@ function ProductCard({
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, delay, ease: EASE }}
     >
       <Link href={href} className="group block">
@@ -131,19 +134,16 @@ function ProductCard({
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
-          {/* Subtle dark overlay on hover for depth */}
-          <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/10 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/8 transition-colors duration-300" />
         </div>
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1">
-              {category}
-            </p>
-            <p className="text-sm font-medium text-zinc-950 dark:text-zinc-50 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-200">
-              {name}
-            </p>
-          </div>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 shrink-0 mt-5 tabular-nums">
+        <p className="text-[11px] font-medium uppercase tracking-label text-zinc-400 dark:text-zinc-500 mb-1">
+          {category}
+        </p>
+        <div className="flex items-baseline justify-between gap-2">
+          <p className="text-[15px] font-medium text-[var(--color-fg)] group-hover:text-[var(--color-muted)] transition-colors duration-200 leading-snug">
+            {name}
+          </p>
+          <p className="text-[14px] font-medium text-[var(--color-muted)] tabular-nums shrink-0">
             {formatPrice(priceCents)}
           </p>
         </div>
@@ -171,7 +171,7 @@ export default function HomePage() {
     return {
       initial: reduce ? false : { opacity: 0, y: 18 },
       whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, amount: 0.25 },
+      viewport: { once: true, amount: 0.2 },
       transition: { duration: 0.65, delay, ease: EASE },
     }
   }
@@ -183,7 +183,7 @@ export default function HomePage() {
       {/* ------------------------------------------------------------------ */}
       <section className="relative min-h-[100dvh] grid grid-cols-1 lg:grid-cols-[55fr_45fr] overflow-hidden">
         {/* Left: text panel */}
-        <div className="relative z-10 flex flex-col justify-end lg:justify-center px-8 pt-24 pb-16 lg:px-16 xl:px-24 lg:pt-24 lg:pb-0">
+        <div className="relative z-10 flex flex-col justify-end lg:justify-center px-6 pt-28 pb-16 md:px-12 lg:px-20 xl:px-28 lg:pt-24 lg:pb-0">
           {/* Mobile: hero image sits behind text */}
           <div className="absolute inset-0 lg:hidden">
             <Image
@@ -200,38 +200,38 @@ export default function HomePage() {
           <div className="relative">
             <motion.p
               {...fadeUp(0.05)}
-              className="text-[10px] uppercase tracking-widest text-zinc-400 mb-4"
+              className="text-[11px] uppercase tracking-label text-zinc-400 mb-5"
             >
               New Collection — 2025
             </motion.p>
 
             <motion.h1
               {...fadeUp(0.15)}
-              className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tightest leading-[1.04] text-zinc-50 lg:text-zinc-950 dark:lg:text-zinc-50"
+              className="font-display font-normal text-[3.75rem] md:text-[5rem] lg:text-[5.75rem] xl:text-[6.5rem] leading-[0.93] tracking-display text-zinc-50 lg:text-[var(--color-fg)]"
             >
               Dressed
               <br />
-              with intent.
+              <em className="not-italic">with intent.</em>
             </motion.h1>
 
             <motion.p
               {...fadeUp(0.3)}
-              className="mt-6 text-base md:text-lg text-zinc-300 lg:text-zinc-500 dark:lg:text-zinc-400 leading-relaxed max-w-[40ch]"
+              className="mt-7 text-[15px] text-zinc-300 lg:text-[var(--color-muted)] leading-relaxed max-w-[36ch]"
             >
               Considered menswear. Shirts, trousers, and accessories that outlast trends.
             </motion.p>
 
-            <motion.div {...fadeUp(0.45)} className="mt-10 flex items-center gap-6">
+            <motion.div {...fadeUp(0.45)} className="mt-10 flex items-center gap-8">
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2.5 bg-zinc-50 lg:bg-zinc-950 dark:lg:bg-zinc-50 text-zinc-950 lg:text-zinc-50 dark:lg:text-zinc-950 px-7 py-3.5 text-sm font-medium tracking-wide uppercase hover:opacity-90 active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center gap-2.5 h-11 px-7 text-[11px] font-medium uppercase tracking-label bg-zinc-50 lg:bg-[var(--color-fg)] text-zinc-950 lg:text-[var(--color-bg)] hover:opacity-80 active:scale-[0.98] transition-all duration-200"
               >
                 Shop Collection
-                <ArrowRight size={15} weight="bold" />
+                <ArrowRight size={13} weight="bold" />
               </Link>
               <Link
                 href="/shop?category=outerwear"
-                className="hidden lg:inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+                className="hidden lg:inline-flex items-center gap-1.5 text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors duration-150"
               >
                 Outerwear
                 <ArrowRight size={11} />
@@ -259,45 +259,47 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* TRUST BAR                                                            */}
+      {/* MARQUEE — signature element, one instance only                       */}
       {/* ------------------------------------------------------------------ */}
-      <section className="border-y border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16 xl:px-24 py-5 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 lg:gap-20">
-          {[
-            { label: 'Free shipping over $150' },
-            { label: 'Premium natural fabrics' },
-            { label: 'Easy 30-day returns' },
-          ].map(({ label }) => (
-            <p key={label} className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
-              {label}
-            </p>
+      <div
+        className="border-y border-[var(--color-border)] overflow-hidden py-4 bg-[var(--color-bg)]"
+        aria-hidden="true"
+      >
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[1, 2].map((i) => (
+            <span
+              key={i}
+              className="inline-flex shrink-0 text-[11px] font-medium uppercase tracking-label text-[var(--color-subtle)] pr-0"
+            >
+              {MARQUEE_TEXT.repeat(6)}
+            </span>
           ))}
         </div>
-      </section>
+      </div>
 
       {/* ------------------------------------------------------------------ */}
       {/* FEATURED PRODUCTS                                                    */}
       {/* ------------------------------------------------------------------ */}
-      <section className="px-8 lg:px-16 xl:px-24 py-20 lg:py-28">
+      <section className="px-6 md:px-12 lg:px-20 xl:px-28 py-20 lg:py-28">
         <div className="flex items-end justify-between mb-10">
           <motion.h2
             {...revealOnScroll(0)}
-            className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50"
+            className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-[var(--color-fg)]"
           >
             Featured pieces
           </motion.h2>
           <motion.div {...revealOnScroll(0.05)}>
             <Link
               href="/shop"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
             >
               View all
-              <ArrowRight size={12} />
+              <ArrowRight size={11} />
             </Link>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5">
           {FEATURED.map((product, i) => (
             <ProductCard
               key={product.id}
@@ -306,7 +308,7 @@ export default function HomePage() {
               priceCents={product.priceCents}
               image={product.image}
               href={product.href}
-              delay={i * 0.08}
+              delay={i * 0.07}
             />
           ))}
         </div>
@@ -315,29 +317,25 @@ export default function HomePage() {
       {/* ------------------------------------------------------------------ */}
       {/* COLLECTIONS GRID                                                     */}
       {/* ------------------------------------------------------------------ */}
-      <section className="px-8 lg:px-16 xl:px-24 py-8 lg:py-16 border-t border-zinc-200 dark:border-zinc-800">
+      <section className="px-6 md:px-12 lg:px-20 xl:px-28 py-8 lg:py-16 border-t border-[var(--color-border)]">
         <div className="flex items-end justify-between mb-10">
           <motion.h2
             {...revealOnScroll(0)}
-            className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50"
+            className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-[var(--color-fg)]"
           >
             Shop by category
           </motion.h2>
           <motion.div {...revealOnScroll(0.05)}>
             <Link
               href="/shop"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
             >
               All categories
-              <ArrowRight size={12} />
+              <ArrowRight size={11} />
             </Link>
           </motion.div>
         </div>
 
-        {/*
-          Mobile  (grid-cols-2): Shirts full-row, Trousers+Accessories half each, Outerwear full-row
-          Desktop (grid-cols-3): Shirts 2/3, Trousers 1/3  |  Accessories 1/3, Outerwear 2/3
-        */}
         <motion.div
           {...revealOnScroll(0.1)}
           className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 md:gap-3"
@@ -373,63 +371,63 @@ export default function HomePage() {
       {/* ------------------------------------------------------------------ */}
       {/* BRAND STATEMENT                                                      */}
       {/* ------------------------------------------------------------------ */}
-      <section className="px-8 lg:px-16 xl:px-24 py-24 lg:py-36 border-t border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-[900px]">
+      <section className="px-6 md:px-12 lg:px-20 xl:px-28 py-24 lg:py-36 border-t border-[var(--color-border)]">
+        <div className="max-w-[860px]">
           <motion.p
             {...revealOnScroll(0)}
-            className="text-[10px] uppercase tracking-widest text-zinc-400 mb-8"
+            className="text-[11px] uppercase tracking-label text-[var(--color-muted)] mb-8"
           >
             Why AppleShirt
           </motion.p>
 
           <motion.h2
             {...revealOnScroll(0.08)}
-            className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tightest leading-[1.04] text-zinc-950 dark:text-zinc-50"
+            className="font-display font-normal text-[2.5rem] md:text-[3.5rem] lg:text-[4.25rem] leading-[0.96] tracking-display text-[var(--color-fg)]"
           >
             Built to last.
             <br />
-            Worn with intent.
+            <em className="not-italic">Worn with intent.</em>
           </motion.h2>
 
           <motion.p
             {...revealOnScroll(0.18)}
-            className="mt-8 text-base md:text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-[55ch]"
+            className="mt-8 text-[15px] text-[var(--color-muted)] leading-relaxed max-w-[52ch]"
           >
             Every piece in the AppleShirt collection is designed to outlast trends —
             crafted from materials chosen for longevity and precision cut for a modern fit.
           </motion.p>
 
-          <motion.div {...revealOnScroll(0.28)} className="mt-12 flex flex-wrap gap-8">
+          <motion.div {...revealOnScroll(0.26)} className="mt-10 flex flex-wrap gap-10">
             {[
               { stat: '100%', desc: 'Natural fibres' },
               { stat: '30+', desc: 'Styles per season' },
               { stat: '2-yr', desc: 'Quality guarantee' },
             ].map(({ stat, desc }) => (
               <div key={stat}>
-                <p className="text-3xl font-medium tracking-tightest text-zinc-950 dark:text-zinc-50">
+                <p className="text-[2rem] font-display font-normal tracking-display text-[var(--color-fg)]">
                   {stat}
                 </p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">{desc}</p>
+                <p className="text-[12px] text-[var(--color-muted)] mt-1">{desc}</p>
               </div>
             ))}
           </motion.div>
 
-          <motion.div {...revealOnScroll(0.35)} className="mt-12">
+          <motion.div {...revealOnScroll(0.34)} className="mt-12">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-950 dark:text-zinc-50 border-b border-zinc-950 dark:border-zinc-50 pb-0.5 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-400 dark:hover:text-zinc-500 transition-all duration-200"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-fg)] border-b border-[var(--color-fg)] pb-px hover:border-[var(--color-subtle)] hover:text-[var(--color-muted)] transition-all duration-200"
             >
               Explore the range
-              <ArrowRight size={14} weight="bold" />
+              <ArrowRight size={13} weight="bold" />
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* EDITORIAL STRIP — 3 images in a horizontal band                     */}
+      {/* EDITORIAL STRIP                                                      */}
       {/* ------------------------------------------------------------------ */}
-      <section className="overflow-hidden border-t border-zinc-200 dark:border-zinc-800">
+      <section className="overflow-hidden border-t border-[var(--color-border)]">
         <motion.div
           initial={reduce ? false : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -460,16 +458,16 @@ export default function HomePage() {
             </motion.div>
           ))}
         </motion.div>
-        <div className="px-8 lg:px-16 xl:px-24 py-8 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800">
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <div className="px-6 md:px-12 lg:px-20 xl:px-28 py-7 flex items-center justify-between border-b border-[var(--color-border)]">
+          <p className="text-[13px] text-[var(--color-muted)]">
             The full collection, curated for the modern wardrobe.
           </p>
           <Link
             href="/shop"
-            className="flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+            className="flex items-center gap-1.5 text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
           >
             Shop now
-            <ArrowRight size={12} />
+            <ArrowRight size={11} />
           </Link>
         </div>
       </section>

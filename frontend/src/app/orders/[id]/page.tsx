@@ -34,10 +34,10 @@ export default function OrderDetailPage() {
 
   if (error || !order) {
     return (
-      <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20 flex items-center justify-center">
+      <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">{error ?? 'Order not found.'}</p>
-          <Link href="/orders" className="text-sm underline underline-offset-2 text-zinc-950 dark:text-zinc-50">
+          <p className="text-[14px] text-[var(--color-muted)] mb-4">{error ?? 'Order not found.'}</p>
+          <Link href="/orders" className="text-[13px] underline underline-offset-2 text-[var(--color-fg)]">
             ← Back to orders
           </Link>
         </div>
@@ -46,15 +46,15 @@ export default function OrderDetailPage() {
   }
 
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20">
-      <div className="max-w-[760px] mx-auto px-6 md:px-10 lg:px-16">
+    <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
+      <div className="max-w-[760px] mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Back nav */}
         <Link
           href="/orders"
-          className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-label text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors mb-8"
         >
-          <ArrowLeft size={12} />
+          <ArrowLeft size={11} />
           All Orders
         </Link>
 
@@ -66,11 +66,13 @@ export default function OrderDetailPage() {
           {/* Header */}
           <div className="flex items-start justify-between mb-10 gap-4">
             <div>
-              <p className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1.5">Order</p>
-              <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+              <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] mb-2">
+                Order
+              </p>
+              <h1 className="text-[1.625rem] md:text-[2rem] font-medium tracking-[-0.02em] text-[var(--color-fg)]">
                 #{order.id}
               </h1>
-              <p className="text-sm text-zinc-400 dark:text-zinc-500 mt-1">
+              <p className="text-[13px] text-[var(--color-muted)] mt-1">
                 {new Date(order.created_at).toLocaleDateString('en-GB', {
                   weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
                 })}
@@ -80,30 +82,30 @@ export default function OrderDetailPage() {
           </div>
 
           {/* Items */}
-          <Section icon={<Package size={14} />} title="Items">
-            <div className="divide-y divide-zinc-100 dark:divide-zinc-900">
+          <Section icon={<Package size={13} />} title="Items">
+            <div className="divide-y divide-[var(--color-border)]">
               {order.items.map((item) => (
                 <div key={item.id} className="py-4 flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-zinc-950 dark:text-zinc-50">{item.name}</p>
+                    <p className="text-[14px] text-[var(--color-fg)]">{item.name}</p>
                     {item.product_id ? (
                       <Link
                         href={`/shop/${item.product_id}`}
-                        className="text-xs text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors mt-0.5 inline-block"
+                        className="text-[12px] text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors mt-0.5 inline-block"
                       >
                         View product →
                       </Link>
                     ) : (
-                      <span className="text-xs text-zinc-300 dark:text-zinc-600 mt-0.5 block">
+                      <span className="text-[12px] text-[var(--color-subtle)] mt-0.5 block">
                         Product no longer available
                       </span>
                     )}
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-sm font-medium tabular-nums text-zinc-950 dark:text-zinc-50">
+                    <p className="text-[14px] font-medium tabular-nums text-[var(--color-fg)]">
                       {formatPrice(item.subtotal)}
                     </p>
-                    <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5 tabular-nums">
+                    <p className="text-[12px] text-[var(--color-muted)] mt-0.5 tabular-nums">
                       {formatPrice(item.unit_price)} × {item.quantity}
                     </p>
                   </div>
@@ -112,18 +114,18 @@ export default function OrderDetailPage() {
             </div>
 
             {/* Totals */}
-            <div className="border-t border-zinc-200 dark:border-zinc-800 pt-4 mt-2 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-zinc-500 dark:text-zinc-400">Subtotal</span>
-                <span className="tabular-nums text-zinc-700 dark:text-zinc-300">{formatPrice(order.total)}</span>
+            <div className="border-t border-[var(--color-border)] pt-4 mt-2 space-y-2">
+              <div className="flex justify-between text-[13px]">
+                <span className="text-[var(--color-muted)]">Subtotal</span>
+                <span className="tabular-nums text-[var(--color-fg)]">{formatPrice(order.total)}</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-zinc-500 dark:text-zinc-400">Shipping</span>
-                <span className="text-zinc-500 dark:text-zinc-400">Free</span>
+              <div className="flex justify-between text-[13px]">
+                <span className="text-[var(--color-muted)]">Shipping</span>
+                <span className="text-[var(--color-muted)]">Free</span>
               </div>
-              <div className="flex justify-between pt-2 border-t border-zinc-200 dark:border-zinc-800">
-                <span className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">Total</span>
-                <span className="text-lg font-semibold tabular-nums text-zinc-950 dark:text-zinc-50">
+              <div className="flex justify-between pt-2 border-t border-[var(--color-border)]">
+                <span className="text-[14px] font-medium text-[var(--color-fg)]">Total</span>
+                <span className="text-[18px] font-medium tabular-nums text-[var(--color-fg)]">
                   {formatPrice(order.total)}
                 </span>
               </div>
@@ -132,7 +134,7 @@ export default function OrderDetailPage() {
 
           {/* Payment info */}
           {order.payment && (
-            <Section icon={<CreditCard size={14} />} title="Payment">
+            <Section icon={<CreditCard size={13} />} title="Payment">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <InfoCell label="Method" value={order.payment.method.replace('_', ' ')} />
                 <InfoCell label="Status" value={order.payment.status} highlight />
@@ -141,8 +143,8 @@ export default function OrderDetailPage() {
             </Section>
           )}
 
-          {/* Order summary */}
-          <Section icon={<Receipt size={14} />} title="Summary">
+          {/* Summary */}
+          <Section icon={<Receipt size={13} />} title="Summary">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <InfoCell label="Order ID" value={`#${order.id}`} mono />
               <InfoCell label="Items" value={String(order.items.reduce((s, i) => s + i.quantity, 0))} />
@@ -156,20 +158,19 @@ export default function OrderDetailPage() {
             </div>
           </Section>
 
-          {/* Footer CTAs */}
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 mt-8">
             <Link
               href="/orders"
-              className="flex-1 h-11 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center gap-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+              className="flex-1 h-11 border border-[var(--color-border)] flex items-center justify-center text-[11px] uppercase tracking-label text-[var(--color-fg)] hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
             >
               ← Order History
             </Link>
             <Link
               href="/shop"
-              className="flex-1 h-11 bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 flex items-center justify-center gap-2 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors group"
+              className="flex-1 h-11 bg-[var(--color-primary)] text-[var(--color-primary-fg)] flex items-center justify-center text-[11px] uppercase tracking-label hover:opacity-80 transition-opacity"
             >
-              Continue Shopping
-              <ArrowLeft size={14} className="rotate-180 group-hover:translate-x-0.5 transition-transform" />
+              Continue Shopping →
             </Link>
           </div>
         </motion.div>
@@ -188,8 +189,8 @@ function Section({
   children: React.ReactNode
 }) {
   return (
-    <div className="border border-zinc-200 dark:border-zinc-800 p-5 md:p-6 mb-4">
-      <h2 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 flex items-center gap-2 mb-5">
+    <div className="border border-[var(--color-border)] bg-[var(--color-surface)] p-5 md:p-6 mb-4">
+      <h2 className="text-[11px] uppercase tracking-label font-medium text-[var(--color-muted)] flex items-center gap-2 mb-5">
         {icon}
         {title}
       </h2>
@@ -211,12 +212,12 @@ function InfoCell({
 }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1">{label}</p>
+      <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] mb-1.5">{label}</p>
       <p
         className={[
-          'text-sm',
-          mono ? 'font-mono text-zinc-600 dark:text-zinc-400 break-all' : '',
-          highlight ? 'font-medium capitalize text-zinc-950 dark:text-zinc-50' : 'text-zinc-700 dark:text-zinc-300',
+          'text-[13px]',
+          mono ? 'font-mono text-[var(--color-muted)] break-all' : '',
+          highlight ? 'font-medium capitalize text-[var(--color-fg)]' : 'text-[var(--color-fg)]',
         ].join(' ')}
       >
         {value}
@@ -234,7 +235,7 @@ function StatusBadge({ status, large }: { status: string; large?: boolean }) {
   const cls = map[status.toLowerCase()] ?? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800'
   return (
     <span
-      className={`inline-flex border uppercase tracking-wider ${cls} ${large ? 'px-3 py-1.5 text-xs' : 'px-2 py-0.5 text-[10px]'}`}
+      className={`inline-flex border uppercase tracking-label ${cls} ${large ? 'px-3 py-1.5 text-[11px]' : 'px-2 py-0.5 text-[10px]'}`}
     >
       {status}
     </span>
@@ -243,17 +244,17 @@ function StatusBadge({ status, large }: { status: string; large?: boolean }) {
 
 function DetailSkeleton() {
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 pt-24 pb-20">
-      <div className="max-w-[760px] mx-auto px-6 md:px-10 lg:px-16">
-        <div className="h-3 w-24 bg-zinc-100 dark:bg-zinc-900 animate-pulse mb-8" />
+    <div className="min-h-[100dvh] bg-[var(--color-bg)] pt-24 pb-20">
+      <div className="max-w-[760px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="h-2.5 w-24 bg-zinc-100 dark:bg-zinc-900 animate-pulse mb-8" />
         <div className="mb-10 space-y-2">
-          <div className="h-3 w-16 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
+          <div className="h-2.5 w-16 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
           <div className="h-8 w-24 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
         </div>
-        <div className="border border-zinc-200 dark:border-zinc-800 p-6 mb-4">
-          <div className="h-3 w-16 bg-zinc-100 dark:bg-zinc-900 animate-pulse mb-5" />
+        <div className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6 mb-4">
+          <div className="h-2.5 w-16 bg-zinc-100 dark:bg-zinc-900 animate-pulse mb-5" />
           {[1, 2, 3].map((i) => (
-            <div key={i} className="py-4 border-b border-zinc-100 dark:border-zinc-900 flex justify-between">
+            <div key={i} className="py-4 border-b border-[var(--color-border)] flex justify-between">
               <div className="h-4 w-48 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
               <div className="h-4 w-20 bg-zinc-100 dark:bg-zinc-900 animate-pulse" />
             </div>

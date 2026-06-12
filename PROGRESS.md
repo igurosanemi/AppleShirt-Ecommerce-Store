@@ -15,6 +15,7 @@
 | 8 | Cart + Checkout UI | Done |
 | 9 | Dark / Light Mode + Home Refinement | Done |
 | 10 | Polish + E2E | Done |
+| 11 | Design Overhaul — Editorial Cold | Done |
 
 ---
 
@@ -359,3 +360,59 @@
 - [x] TypeScript clean (exit code 0)
 - [x] PROGRESS.md + CLAUDE.md finalized
 - [x] Git commit: `feat: phase 10 — polish + QA`
+
+---
+
+## Phase 11 — Design Overhaul: Editorial Cold ✅
+
+**Status**: Done
+
+### Concept
+"Zero Noise — Editorial Cold" — a two-typeface system where Cormorant Garamond carries emotional weight (hero titles, product names, brand moments) and Geist Sans handles all utility text. CSS custom property tokens unify both light and dark themes.
+
+### Checklist
+- [x] `tailwind.config.ts` — `font-display` (Cormorant), `tracking-label: '0.16em'`, `tracking-display: '-0.025em'`, `animation.marquee`, `keyframes.marquee`
+- [x] `globals.css` — full CSS token system: `--color-bg/surface/fg/muted/subtle/border/border-strong/primary/primary-fg` for both `:root` (light) and `.dark`; `@media (prefers-reduced-motion)` gates marquee
+- [x] `layout.tsx` — Cormorant Garamond loaded via `next/font/google` (self-hosted, zero CDN); `--font-cormorant` variable applied to `<html>`
+- [x] `Button.tsx` — `h-11`, `text-[11px] tracking-label uppercase`, CSS variable colors throughout, spinner loading state
+- [x] `Input.tsx` — `h-11`, CSS variable colors, full border, focus transitions to `var(--color-fg)`
+- [x] `page.tsx` (home) — Cormorant H1 at 6.5rem+, CSS marquee ticker strip, Featured Products grid, CollectionTile grid, Cormorant Brand Statement H2, stat block
+- [x] `shop/ShopContent.tsx` — Cormorant shop H1, label tokens on category pills + sidebar headers, all zinc classes → CSS vars
+- [x] `shop/[id]/page.tsx` — Cormorant product name, price at 20px, label token on category eyebrow + Qty label
+- [x] `cart/page.tsx` — utility heading, label tokens on "Your Selection" + "Order Summary"
+- [x] `checkout/page.tsx` — utility heading, label tokens on all form section headers + field labels
+- [x] `orders/page.tsx` — utility heading, label tokens in table headers + pagination
+- [x] `orders/[id]/page.tsx` — utility heading, Section headers + InfoCell label tokens, StatusBadge `tracking-label`
+- [x] `orders/confirmation/[id]/page.tsx` — Cormorant "Thank you." H1 with spring entrance animation, label token "Order Confirmed" eyebrow, all CSS vars
+- [x] `login/page.tsx` — label token form labels, CSS var heading + body text
+- [x] `register/page.tsx` — same label token + CSS var pass
+- [x] `Footer.tsx` — label token section headers, CSS var colors throughout, `text-[13px]` body links
+- [x] TypeScript clean (exit code 0)
+- [x] Git commit: `feat: phase 11 — design overhaul editorial cold`
+
+### Design Tokens
+| Token | Light | Dark |
+|-------|-------|------|
+| `--color-bg` | `#F6F6F6` | `#0A0A0A` |
+| `--color-surface` | `#FFFFFF` | `#141414` |
+| `--color-fg` | `#0E0E0E` | `#F0F0F0` |
+| `--color-muted` | `#707070` | `#8C8C8C` |
+| `--color-subtle` | `#ADADAD` | `#4C4C4C` |
+| `--color-border` | `#E4E4E4` | `#1E1E1E` |
+| `--color-border-strong` | `#C8C8C8` | `#383838` |
+| `--color-primary` | `#0E0E0E` | `#F0F0F0` |
+| `--color-primary-fg` | `#F6F6F6` | `#0A0A0A` |
+
+### Typography Scale
+| Role | Class |
+|------|-------|
+| Hero H1 (home) | `font-display font-normal text-[6.5rem] leading-[0.93] tracking-display` |
+| Display H1 (section) | `font-display font-normal text-[3.5rem] leading-[0.96] tracking-display` |
+| Product name | `font-display text-[2.5rem] leading-[1.05]` |
+| Confirmation H1 | `font-display font-normal text-[3rem] leading-[0.96] tracking-display` |
+| Utility H1 | `text-[1.625rem] md:text-[2rem] font-medium tracking-[-0.02em]` |
+| Eyebrow label | `text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)]` |
+| Body | `text-[15px]` |
+| Secondary | `text-[13px] text-[var(--color-muted)]` |
+| Caption | `text-[12px] text-[var(--color-subtle)]` |
+

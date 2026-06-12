@@ -15,31 +15,31 @@
   :root {
     /* Spacing tokens */
     --section-y: clamp(4rem, 8vw, 8rem);
-    --page-x: clamp(2rem, 5vw, 6rem);
+    --page-x: clamp(1.5rem, 5vw, 7rem);
 
-    /* Light theme design tokens */
-    --color-bg: theme(colors.zinc.50);
-    --color-surface: theme(colors.white);
-    --color-fg: theme(colors.zinc.950);
-    --color-muted: theme(colors.zinc.500);
-    --color-subtle: theme(colors.zinc.400);
-    --color-border: theme(colors.zinc.200);
-    --color-border-strong: theme(colors.zinc.300);
-    --color-primary: theme(colors.zinc.950);
-    --color-primary-fg: theme(colors.zinc.50);
+    /* Light theme — cool near-white, not sterile pure white */
+    --color-bg:           #F6F6F6;
+    --color-surface:      #FFFFFF;
+    --color-fg:           #0E0E0E;
+    --color-muted:        #707070;
+    --color-subtle:       #ADADAD;
+    --color-border:       #E4E4E4;
+    --color-border-strong:#C8C8C8;
+    --color-primary:      #0E0E0E;
+    --color-primary-fg:   #F6F6F6;
   }
 
   .dark {
-    /* Dark theme design tokens */
-    --color-bg: theme(colors.zinc.950);
-    --color-surface: theme(colors.zinc.900);
-    --color-fg: theme(colors.zinc.50);
-    --color-muted: theme(colors.zinc.400);
-    --color-subtle: theme(colors.zinc.500);
-    --color-border: theme(colors.zinc.800);
-    --color-border-strong: theme(colors.zinc.700);
-    --color-primary: theme(colors.zinc.50);
-    --color-primary-fg: theme(colors.zinc.950);
+    /* Dark theme — richer black than zinc-950 */
+    --color-bg:           #0A0A0A;
+    --color-surface:      #141414;
+    --color-fg:           #F0F0F0;
+    --color-muted:        #8C8C8C;
+    --color-subtle:       #4C4C4C;
+    --color-border:       #1E1E1E;
+    --color-border-strong:#383838;
+    --color-primary:      #F0F0F0;
+    --color-primary-fg:   #0A0A0A;
   }
 
   html {
@@ -47,12 +47,25 @@
   }
 
   body {
-    @apply bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    @apply antialiased;
     font-feature-settings: 'ss01', 'cv01';
     -webkit-font-smoothing: antialiased;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-zinc-950 dark:outline-zinc-50;
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Marquee — reduced-motion safe, no JS dependency
+   One instance only: home page hero/featured divider
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
   }
 }

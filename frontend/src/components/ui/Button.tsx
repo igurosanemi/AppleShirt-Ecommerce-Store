@@ -22,18 +22,31 @@ export function Button({
       disabled={disabled || loading}
       aria-busy={loading}
       className={cn(
-        'inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide uppercase',
+        'inline-flex items-center justify-center h-11 px-6 gap-2',
+        'text-[11px] font-medium tracking-label uppercase',
         'transition-all duration-200 active:scale-[0.98]',
         'disabled:opacity-50 disabled:cursor-not-allowed',
+        'focus-visible:outline-2 focus-visible:outline-offset-2',
         fullWidth && 'w-full',
-        variant === 'primary' &&
-          'bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-200',
-        variant === 'ghost' &&
-          'border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 bg-transparent hover:border-zinc-950 dark:hover:border-zinc-50 hover:text-zinc-950 dark:hover:text-zinc-50',
+        variant === 'primary' && [
+          'bg-[var(--color-primary)] text-[var(--color-primary-fg)]',
+          'hover:opacity-80',
+          'focus-visible:outline-[var(--color-fg)]',
+        ],
+        variant === 'ghost' && [
+          'border border-[var(--color-border-strong)] text-[var(--color-fg)]',
+          'hover:border-[var(--color-fg)] bg-transparent',
+          'focus-visible:outline-[var(--color-fg)]',
+        ],
         className
       )}
     >
-      {loading ? 'Please wait...' : children}
+      {loading ? (
+        <span className="flex items-center gap-2">
+          <span className="w-3.5 h-3.5 border border-current border-t-transparent animate-spin" />
+          <span>Please wait</span>
+        </span>
+      ) : children}
     </button>
   )
 }

@@ -16,22 +16,22 @@ const ACCOUNT_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
+    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg)]">
       <div className="max-w-[1400px] mx-auto px-8 lg:px-16 xl:px-24 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {/* Brand */}
           <div>
-            <p className="text-base font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 mb-3">
+            <p className="text-[13px] font-medium tracking-[-0.01em] text-[var(--color-fg)] mb-3">
               AppleShirt
             </p>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-[30ch]">
+            <p className="text-[13px] text-[var(--color-muted)] leading-relaxed max-w-[30ch]">
               Considered menswear for the modern wardrobe.
             </p>
           </div>
 
           {/* Shop */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-600 mb-4">
+            <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] mb-5">
               Shop
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -39,7 +39,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+                    className="text-[13px] text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -50,7 +50,7 @@ export function Footer() {
 
           {/* Account */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-600 mb-4">
+            <p className="text-[11px] uppercase tracking-label font-medium text-[var(--color-subtle)] mb-5">
               Account
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -58,7 +58,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150"
+                    className="text-[13px] text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -68,11 +68,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between gap-2">
-          <p className="text-xs text-zinc-400 dark:text-zinc-600">
-            2026 AppleShirt. All rights reserved.
+        <div className="mt-16 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row justify-between gap-2">
+          <p className="text-[11px] text-[var(--color-subtle)]">
+            © 2026 AppleShirt. All rights reserved.
           </p>
-          <p className="text-xs text-zinc-400 dark:text-zinc-600">
+          <p className="text-[11px] text-[var(--color-subtle)]">
             Crafted with care.
           </p>
         </div>
