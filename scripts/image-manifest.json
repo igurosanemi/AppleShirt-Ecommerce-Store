@@ -1,0 +1,610 @@
+[
+  {
+    "file": "hero/hero-editorial.jpg",
+    "id": "WlGkvPcmf-o",
+    "alt": "man in gray suit jacket standing near cars during daytime",
+    "alternates": [
+      {
+        "id": "A5nuQ2Lvg40",
+        "alt": "a person in a suit",
+        "raw": "https://images.unsplash.com/photo-1669575903350-9a349b411810?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8bWFuJTIwdGFpbG9yZWQlMjBjb2F0JTIwZmFzaGlvbiUyMGVkaXRvcmlhbCUyMHN0cmVldCUyMHN0eWxlfGVufDB8MXx8fDE3ODEyNjQ1MzN8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "-au3XMzfhro",
+        "alt": "man in brown coat standing",
+        "raw": "https://images.unsplash.com/photo-1619603364937-8d7af41ef206?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwdGFpbG9yZWQlMjBjb2F0JTIwZmFzaGlvbiUyMGVkaXRvcmlhbCUyMHN0cmVldCUyMHN0eWxlfGVufDB8MXx8fDE3ODEyNjQ1MzN8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "iIjResyhhW0",
+        "alt": "man in brown coat and black pants",
+        "raw": "https://images.unsplash.com/photo-1619603364904-c0498317e145?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwdGFpbG9yZWQlMjBjb2F0JTIwZmFzaGlvbiUyMGVkaXRvcmlhbCUyMHN0cmVldCUyMHN0eWxlfGVufDB8MXx8fDE3ODEyNjQ1MzN8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "_AOGyLg_o5s",
+        "alt": "man in black coat standing on gray pavement",
+        "raw": "https://images.unsplash.com/photo-1617137977259-bb83e191f377?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bWFuJTIwdGFpbG9yZWQlMjBjb2F0JTIwZmFzaGlvbiUyMGVkaXRvcmlhbCUyMHN0cmVldCUyMHN0eWxlfGVufDB8MXx8fDE3ODEyNjQ1MzN8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "43Vswc_FUlE",
+        "alt": "man in green and black plaid coat standing on hallway",
+        "raw": "https://images.unsplash.com/photo-1591203121748-8b24a1f00d16?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHRhaWxvcmVkJTIwY29hdCUyMGZhc2hpb24lMjBlZGl0b3JpYWwlMjBzdHJlZXQlMjBzdHlsZXxlbnwwfDF8fHwxNzgxMjY0NTMzfDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/shirts/classic-white-oxford.jpg",
+    "id": "LhUOZH0a798",
+    "alt": "man in white dress shirt",
+    "alternates": [
+      {
+        "id": "QGhcgi-zWd0",
+        "alt": "man in white button up shirt",
+        "raw": "https://images.unsplash.com/photo-1597466372553-872e25a63b11?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMHdoaXRlJTIwYnV0dG9uJTIwdXAlMjBzaGlydCUyMHBvcnRyYWl0fGVufDB8MXx8fDE3ODEyNjQ1Mzl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "S14GGdEitqA",
+        "alt": "a man in a white shirt looking up",
+        "raw": "https://images.unsplash.com/photo-1638290047807-4c9d389b9aa6?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjB3aGl0ZSUyMGJ1dHRvbiUyMHVwJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTQwfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "4tKAvDxWtlc",
+        "alt": "man in white button up shirt",
+        "raw": "https://images.unsplash.com/photo-1629790457423-3adc0c876be5?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTR8fG1hbiUyMHdlYXJpbmclMjB3aGl0ZSUyMGJ1dHRvbiUyMHVwJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTQwfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "LcmtT_oWOxU",
+        "alt": "man in white dress shirt",
+        "raw": "https://images.unsplash.com/photo-1622209031219-e52006b86cf5?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fG1hbiUyMHdlYXJpbmclMjB3aGl0ZSUyMGJ1dHRvbiUyMHVwJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTQwfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "O_Geo6laK5k",
+        "alt": "a man in a white shirt standing in front of a bush",
+        "raw": "https://images.unsplash.com/photo-1632815611072-0f14ac0e1c91?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTh8fG1hbiUyMHdlYXJpbmclMjB3aGl0ZSUyMGJ1dHRvbiUyMHVwJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTQwfDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/shirts/navy-polo.jpg",
+    "id": "f67Caxg3akg",
+    "alt": "man in black polo shirt",
+    "alternates": [
+      {
+        "id": "CQgxaBhuzhA",
+        "alt": "man in black polo shirt",
+        "raw": "https://images.unsplash.com/photo-1625910513520-bed0389ce32f?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBwb2xvJTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU0M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "87fuAGjguA4",
+        "alt": "man in blue polo shirt standing near grey metal fence during daytime",
+        "raw": "https://images.unsplash.com/photo-1604006852748-903fccbc4019?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBwb2xvJTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU0M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "kymBoY0hLKU",
+        "alt": "a man leaning on a wall with his hands on his hips",
+        "raw": "https://images.unsplash.com/photo-1631034527597-2d46ad65e09c?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBwb2xvJTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU0M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "LTo6ce3YkSc",
+        "alt": "man in blue polo shirt standing near brown concrete building during daytime",
+        "raw": "https://images.unsplash.com/photo-1609655106619-9d28f4f79c49?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBwb2xvJTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU0M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "e3bIZpHXHSA",
+        "alt": "Red and blue striped polo shirt on mannequin.",
+        "raw": "https://images.unsplash.com/photo-1760287363713-a864ca9b1b1f?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBwb2xvJTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU0M3ww&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/shirts/slim-check-dress.jpg",
+    "id": "tsicWqYNB-8",
+    "alt": "man in black and white plaid dress shirt",
+    "alternates": [
+      {
+        "id": "4Y2dCqqXDNY",
+        "alt": "a man in a plaid shirt looks off into the distance",
+        "raw": "https://images.unsplash.com/photo-1673883431618-a38246a2b0e1?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMHBsYWlkJTIwY2hlY2tlZCUyMHNoaXJ0JTIwcG9ydHJhaXR8ZW58MHwxfHx8MTc4MTI2NDU0N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "2Gc9FL-LxFw",
+        "alt": "a black and white photo of a man wearing a plaid shirt",
+        "raw": "https://images.unsplash.com/photo-1679087757879-751f7a390b92?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMHBsYWlkJTIwY2hlY2tlZCUyMHNoaXJ0JTIwcG9ydHJhaXR8ZW58MHwxfHx8MTc4MTI2NDU0N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "w0J1odQXj3A",
+        "alt": "men's blue plaid button-up shirt",
+        "raw": "https://images.unsplash.com/photo-1568619578963-3fc7a775028e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bWFuJTIwd2VhcmluZyUyMHBsYWlkJTIwY2hlY2tlZCUyMHNoaXJ0JTIwcG9ydHJhaXR8ZW58MHwxfHx8MTc4MTI2NDU0N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "nJHHD383R1Y",
+        "alt": "man in red white and black plaid button up shirt wearing brown hat",
+        "raw": "https://images.unsplash.com/photo-1603657657965-91c27ff4d31b?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwd2VhcmluZyUyMHBsYWlkJTIwY2hlY2tlZCUyMHNoaXJ0JTIwcG9ydHJhaXR8ZW58MHwxfHx8MTc4MTI2NDU0N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "ncFKMnmeSu0",
+        "alt": "a man in a plaid shirt is standing in the leaves",
+        "raw": "https://images.unsplash.com/photo-1638663381790-ce976a469233?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fG1hbiUyMHdlYXJpbmclMjBwbGFpZCUyMGNoZWNrZWQlMjBzaGlydCUyMHBvcnRyYWl0fGVufDB8MXx8fDE3ODEyNjQ1NDd8MA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/shirts/linen-short-sleeve.jpg",
+    "id": "Qj_-LNGU7pU",
+    "alt": "man in beige polo shirt standing near brown concrete building during daytime",
+    "alternates": [
+      {
+        "id": "JeNDOMPSS7k",
+        "alt": "a man in a white shirt and sunglasses",
+        "raw": "https://images.unsplash.com/photo-1623413487006-54669f337144?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjBzaGlydCUyMHN1bW1lcnxlbnwwfDF8fHwxNzgxMjY0NTUxfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "MQdqvMtVtGY",
+        "alt": "Man in light clothing on a sandy beach",
+        "raw": "https://images.unsplash.com/photo-1763293203909-47fc323a9ac9?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTh8fG1hbiUyMHdlYXJpbmclMjBiZWlnZSUyMGxpbmVuJTIwc2hpcnQlMjBzdW1tZXJ8ZW58MHwxfHx8MTc4MTI2NDU1MXww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "fbwPvGN6U1Y",
+        "alt": "man in white button up shirt standing during daytime",
+        "raw": "https://images.unsplash.com/photo-1591357037205-166318b51afd?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fG1hbiUyMHdlYXJpbmclMjBiZWlnZSUyMGxpbmVuJTIwc2hpcnQlMjBzdW1tZXJ8ZW58MHwxfHx8MTc4MTI2NDU1MXww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "Ei0G2wlLevA",
+        "alt": "a man is holding a drink in his hand",
+        "raw": "https://images.unsplash.com/photo-1708531376528-0c4d76f54315?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjBzaGlydCUyMHN1bW1lcnxlbnwwfDF8fHwxNzgxMjY0NTUxfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "9GqMLuNFWCw",
+        "alt": "A stylish man poses with folded arms.",
+        "raw": "https://images.unsplash.com/photo-1744535814652-9cd3a3dea348?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjBzaGlydCUyMHN1bW1lcnxlbnwwfDF8fHwxNzgxMjY0NTUxfDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/shirts/midnight-black-oxford.jpg",
+    "id": "Dj-p9J6JlYQ",
+    "alt": "man in black crew neck t-shirt",
+    "alternates": [
+      {
+        "id": "JVH7q7lxyjY",
+        "alt": "man in black button up shirt",
+        "raw": "https://images.unsplash.com/photo-1614010966237-74489a16848b?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fG1hbiUyMHdlYXJpbmclMjBibGFjayUyMGRyZXNzJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTU1fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "1w-_nOCBhmM",
+        "alt": "woman in black collared shirt",
+        "raw": "https://images.unsplash.com/photo-1627284036648-e9faa67416a8?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTF8fG1hbiUyMHdlYXJpbmclMjBibGFjayUyMGRyZXNzJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTU1fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "H5pKMYnmhSk",
+        "alt": "man in blue dress shirt",
+        "raw": "https://images.unsplash.com/photo-1596732395264-36901fb0db89?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBibGFjayUyMGRyZXNzJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTU1fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "HilnImMJoQY",
+        "alt": "a man with a beard wearing sunglasses and a black shirt",
+        "raw": "https://images.unsplash.com/photo-1693501315311-a7a45b3e39d7?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTR8fG1hbiUyMHdlYXJpbmclMjBibGFjayUyMGRyZXNzJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTU1fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "WXoCpasOPuo",
+        "alt": "A man in a black shirt and tie posing for a picture",
+        "raw": "https://images.unsplash.com/photo-1740414289827-3332d41cb11a?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fG1hbiUyMHdlYXJpbmclMjBibGFjayUyMGRyZXNzJTIwc2hpcnQlMjBwb3J0cmFpdHxlbnwwfDF8fHwxNzgxMjY0NTU1fDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/shirts/grey-chambray.jpg",
+    "id": "GwVUSnZVv7k",
+    "alt": "man in gray dress shirt and blue denim jeans sitting on tree",
+    "alternates": [
+      {
+        "id": "-MmB9qNQetA",
+        "alt": "A man wearing sunglasses standing in front of flowers",
+        "raw": "https://images.unsplash.com/photo-1739929198566-1dd3828ad012?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTF8fG1hbiUyMHdlYXJpbmclMjBkZW5pbSUyMGNoYW1icmF5JTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU1OHww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "ArKo9xrf9Uk",
+        "alt": "man in blue denim button up shirt wearing black framed eyeglasses",
+        "raw": "https://images.unsplash.com/photo-1588497233958-24ae13406480?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBkZW5pbSUyMGNoYW1icmF5JTIwc2hpcnR8ZW58MHwxfHx8MTc4MTI2NDU1OHww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "7PuQifdU248",
+        "alt": "man in blue denim jacket wearing black sunglasses",
+        "raw": "https://images.unsplash.com/photo-1615943168243-5b2503679e47?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8bWFuJTIwd2VhcmluZyUyMGRlbmltJTIwY2hhbWJyYXklMjBzaGlydHxlbnwwfDF8fHwxNzgxMjY0NTU4fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "lUPnKNc3wOU",
+        "alt": "man in blue dress shirt and black pants standing on snow covered ground during daytime",
+        "raw": "https://images.unsplash.com/photo-1628273080778-b2402a2dcf88?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGRlbmltJTIwY2hhbWJyYXklMjBzaGlydHxlbnwwfDF8fHwxNzgxMjY0NTU4fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "nGWo2KbJERc",
+        "alt": "man in blue dress shirt sitting on sidewalk during daytime",
+        "raw": "https://images.unsplash.com/photo-1593412544031-ffedb2876ed6?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMGRlbmltJTIwY2hhbWJyYXklMjBzaGlydHxlbnwwfDF8fHwxNzgxMjY0NTU4fDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/trousers/slim-khaki-chinos.jpg",
+    "id": "0XeQNC4OZPo",
+    "alt": "man in gray jacket and brown pants standing on yellow ladder",
+    "alternates": [
+      {
+        "id": "BeuCkHVJsX8",
+        "alt": "woman in brown coat and gray pants standing on gray concrete floor during daytime",
+        "raw": "https://images.unsplash.com/photo-1592581781714-14df02643e0a?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTF8fG1hbiUyMHdlYXJpbmclMjBraGFraSUyMGNoaW5vJTIwdHJvdXNlcnMlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1NjJ8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "PPrPaki9cKo",
+        "alt": "man walking hand on jacket's pocket with rolled paper on pants back pocket",
+        "raw": "https://images.unsplash.com/photo-1545272957-4a9a90740ce1?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBraGFraSUyMGNoaW5vJTIwdHJvdXNlcnMlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1NjJ8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "xaNaTrVYjLE",
+        "alt": "a man in a blue sweatshirt is holding a pair of pants",
+        "raw": "https://images.unsplash.com/photo-1678286722475-88f619e914ea?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fG1hbiUyMHdlYXJpbmclMjBraGFraSUyMGNoaW5vJTIwdHJvdXNlcnMlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1NjJ8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "gZzbhndl6Lg",
+        "alt": "a person taking a picture of a car",
+        "raw": "https://images.unsplash.com/photo-1668585454790-3d68a3e1393e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8bWFuJTIwd2VhcmluZyUyMGtoYWtpJTIwY2hpbm8lMjB0cm91c2VycyUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2Mnww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "7b8XvcC-rB4",
+        "alt": "man in black polo shirt and blue denim jeans standing on sidewalk during daytime",
+        "raw": "https://images.unsplash.com/photo-1614533835924-043a0974d1ad?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMGtoYWtpJTIwY2hpbm8lMjB0cm91c2VycyUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2Mnww&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/trousers/charcoal-dress-trousers.jpg",
+    "id": "RuBXafq461A",
+    "alt": "man in gray suit jacket and black pants wearing black sunglasses standing on gray concrete stairs",
+    "alternates": [
+      {
+        "id": "1mdpEQXnJ0A",
+        "alt": "man in gray suit jacket and black dress pants",
+        "raw": "https://images.unsplash.com/photo-1604822106141-d9dccd171fad?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwZ3JleSUyMHN1aXQlMjB0cm91c2VycyUyMHRhaWxvcmVkJTIwZmFzaGlvbnxlbnwwfDF8fHwxNzgxMjY0NTY2fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "HRazOEIHLdk",
+        "alt": "man in gray suit jacket and black pants standing on white staircase",
+        "raw": "https://images.unsplash.com/photo-1609840170480-4c440bcd5d8f?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTF8fG1hbiUyMGdyZXklMjBzdWl0JTIwdHJvdXNlcnMlMjB0YWlsb3JlZCUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2Nnww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "N9G5GL9VewE",
+        "alt": "person in gray denim jeans and brown leather shoes",
+        "raw": "https://images.unsplash.com/photo-1609259886986-a642e7e1dbf9?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fG1hbiUyMGdyZXklMjBzdWl0JTIwdHJvdXNlcnMlMjB0YWlsb3JlZCUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2Nnww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "kg3N8vqvMd8",
+        "alt": "person wearing gray dress pants with camera",
+        "raw": "https://images.unsplash.com/photo-1493357335960-4583bfa6f8d9?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MjB8fG1hbiUyMGdyZXklMjBzdWl0JTIwdHJvdXNlcnMlMjB0YWlsb3JlZCUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2Nnww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "tFaLxWkeEnA",
+        "alt": "man in black suit jacket and black pants sitting on black metal bench",
+        "raw": "https://images.unsplash.com/photo-1631052066165-9720608b36da?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwZ3JleSUyMHN1aXQlMjB0cm91c2VycyUyMHRhaWxvcmVkJTIwZmFzaGlvbnxlbnwwfDF8fHwxNzgxMjY0NTY2fDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/trousers/indigo-jeans.jpg",
+    "id": "17qC7l19hMI",
+    "alt": "man in blue denim jeans standing",
+    "alternates": [
+      {
+        "id": "M3-eH4_UNpQ",
+        "alt": "woman in blue denim jacket and blue denim jeans standing on road during daytime",
+        "raw": "https://images.unsplash.com/photo-1605192554106-d549b1b975cd?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGRhcmslMjBibHVlJTIwamVhbnMlMjBkZW5pbSUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2OXww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "OXOvyovSTiE",
+        "alt": "person wearing distressed gray denim jeans standing on pedestrian line",
+        "raw": "https://images.unsplash.com/photo-1520516668418-3661351e2e54?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwd2VhcmluZyUyMGRhcmslMjBibHVlJTIwamVhbnMlMjBkZW5pbSUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2OXww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "FuTLpgcQxaI",
+        "alt": "person in blue denim jacket and blue denim jeans holding brown wooden stick",
+        "raw": "https://images.unsplash.com/photo-1625189777801-6d57e17a04d7?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBkYXJrJTIwYmx1ZSUyMGplYW5zJTIwZGVuaW0lMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1Njl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "0Sl5XsIws9M",
+        "alt": "woman in black leather jacket and blue denim jeans standing on road during daytime",
+        "raw": "https://images.unsplash.com/photo-1605192554260-6a38e95f9bd1?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fG1hbiUyMHdlYXJpbmclMjBkYXJrJTIwYmx1ZSUyMGplYW5zJTIwZGVuaW0lMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1Njl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "--fdXzdA_CU",
+        "alt": "a person's legs in jeans and a blue shirt on a wooden staircase",
+        "raw": "https://images.unsplash.com/photo-1658213455892-b34ccd7b068e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMGRhcmslMjBibHVlJTIwamVhbnMlMjBkZW5pbSUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU2OXww&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/trousers/stone-linen-trousers.jpg",
+    "id": "9GqMLuNFWCw",
+    "alt": "A stylish man poses with folded arms.",
+    "alternates": [
+      {
+        "id": "FqQig6Y9yKE",
+        "alt": "a man sitting on a rock",
+        "raw": "https://images.unsplash.com/photo-1667844485987-80c84a3c3210?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjB0cm91c2VycyUyMHN1bW1lciUyMG91dGZpdHxlbnwwfDF8fHwxNzgxMjY0NTczfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "dD4_Fo71Q58",
+        "alt": "a man standing on top of a rock near the ocean",
+        "raw": "https://images.unsplash.com/photo-1694180919451-0537f0676fe9?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjB0cm91c2VycyUyMHN1bW1lciUyMG91dGZpdHxlbnwwfDF8fHwxNzgxMjY0NTczfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "FypVrcx4hHk",
+        "alt": "a man standing on top of a rock near the ocean",
+        "raw": "https://images.unsplash.com/photo-1694180918241-d5b14fd3043e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjB0cm91c2VycyUyMHN1bW1lciUyMG91dGZpdHxlbnwwfDF8fHwxNzgxMjY0NTczfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "XgEUsHQ9sto",
+        "alt": "a man in a suit and hat is holding a bag",
+        "raw": "https://images.unsplash.com/photo-1699609916655-c7d3e787ce4e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjB0cm91c2VycyUyMHN1bW1lciUyMG91dGZpdHxlbnwwfDF8fHwxNzgxMjY0NTczfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "x4-PSgzshHE",
+        "alt": "a man sitting on a rock",
+        "raw": "https://images.unsplash.com/photo-1661189897651-82f039f05184?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwd2VhcmluZyUyMGJlaWdlJTIwbGluZW4lMjB0cm91c2VycyUyMHN1bW1lciUyMG91dGZpdHxlbnwwfDF8fHwxNzgxMjY0NTczfDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/accessories/leather-belt-brown.jpg",
+    "id": "rH16wMV8ImM",
+    "alt": "a pair of brown leather belts sitting on top of a white piece of paper",
+    "alternates": [
+      {
+        "id": "X1UubnJ5fSw",
+        "alt": "A close up of a brown leather belt",
+        "raw": "https://images.unsplash.com/photo-1734383524180-3c6f9b21e8e3?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8YnJvd24lMjBsZWF0aGVyJTIwYmVsdCUyMHByb2R1Y3R8ZW58MHwxfHx8MTc4MTI2NDU3Nnww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "cjUxiJoVzc0",
+        "alt": "a pair of shoes, a wallet, and a belt laid out on a table",
+        "raw": "https://images.unsplash.com/photo-1637868796504-32f45a96d5a0?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8YnJvd24lMjBsZWF0aGVyJTIwYmVsdCUyMHByb2R1Y3R8ZW58MHwxfHx8MTc4MTI2NDU3Nnww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "gXaZVO9r-xs",
+        "alt": "brown leather belt",
+        "raw": "https://images.unsplash.com/photo-1565251419287-9097aa7299ec?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fGJyb3duJTIwbGVhdGhlciUyMGJlbHQlMjBwcm9kdWN0fGVufDB8MXx8fDE3ODEyNjQ1NzZ8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "e9DgtLTw8Bk",
+        "alt": "brown leather belt with silver buckle",
+        "raw": "https://images.unsplash.com/photo-1625789250576-9efae40f4689?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fGJyb3duJTIwbGVhdGhlciUyMGJlbHQlMjBwcm9kdWN0fGVufDB8MXx8fDE3ODEyNjQ1NzZ8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "cHp_Y0sKjgY",
+        "alt": "A close up of a belt with a rope on it",
+        "raw": "https://images.unsplash.com/photo-1726625430325-17e7f1d5a32c?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTh8fGJyb3duJTIwbGVhdGhlciUyMGJlbHQlMjBwcm9kdWN0fGVufDB8MXx8fDE3ODEyNjQ1NzZ8MA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/accessories/bifold-wallet-black.jpg",
+    "id": "6TZTg967gSk",
+    "alt": "black leather wallet near space black aluminum case Apple Watch with gray Nike Fuel Band",
+    "alternates": [
+      {
+        "id": "aZqloZH2dzk",
+        "alt": "Two leather wallets on a wooden surface",
+        "raw": "https://images.unsplash.com/photo-1772651983030-565c2b7be181?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8YmxhY2slMjBsZWF0aGVyJTIwd2FsbGV0JTIwcHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8MXx8fDE3ODEyNjQ1Nzl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "F-h_2jb1An8",
+        "alt": "Brown leather wallet, camera, and notebook on surface",
+        "raw": "https://images.unsplash.com/photo-1778854290930-698c3f4cb413?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8YmxhY2slMjBsZWF0aGVyJTIwd2FsbGV0JTIwcHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8MXx8fDE3ODEyNjQ1Nzl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "WA8cR-Gmz7A",
+        "alt": "Black wallet with amg logo on wooden table",
+        "raw": "https://images.unsplash.com/photo-1765446904833-6431fecb1706?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8YmxhY2slMjBsZWF0aGVyJTIwd2FsbGV0JTIwcHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8MXx8fDE3ODEyNjQ1Nzl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "D-HA3otPYzs",
+        "alt": "Elegant watch on black wallet, with perfume and book.",
+        "raw": "https://images.unsplash.com/photo-1780337092515-2ca475d4a86a?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8YmxhY2slMjBsZWF0aGVyJTIwd2FsbGV0JTIwcHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8MXx8fDE3ODEyNjQ1Nzl8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "Mw_CW-OpXFw",
+        "alt": "a person holding a cell phone in their hand",
+        "raw": "https://images.unsplash.com/photo-1650481394656-6b33983e7de3?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBsZWF0aGVyJTIwd2FsbGV0JTIwcHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8MXx8fDE3ODEyNjQ1Nzl8MA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/accessories/brushed-steel-watch.jpg",
+    "id": "5Dv52kcKZLc",
+    "alt": "a watch on a wrist",
+    "alternates": [
+      {
+        "id": "bXODrZW-E_Q",
+        "alt": "a close up of a watch",
+        "raw": "https://images.unsplash.com/photo-1650974970439-b824a4615d55?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8c2lsdmVyJTIwc3RlZWwlMjB3cmlzdHdhdGNoJTIwbWVuJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTgzfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "GJZkkkKpXoE",
+        "alt": "a silver watch with a black face",
+        "raw": "https://images.unsplash.com/photo-1661030418545-fd307b4c6f16?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8c2lsdmVyJTIwc3RlZWwlMjB3cmlzdHdhdGNoJTIwbWVuJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTgzfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "NnPiILRe7pY",
+        "alt": "silver round analog watch with silver link bracelet",
+        "raw": "https://images.unsplash.com/photo-1623998022151-6a4df88517cd?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8c2lsdmVyJTIwc3RlZWwlMjB3cmlzdHdhdGNoJTIwbWVuJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTgzfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "ScLkumSYzQs",
+        "alt": "a rolex watch on a tray with a black background",
+        "raw": "https://images.unsplash.com/photo-1710671544323-8e448efa283e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8c2lsdmVyJTIwc3RlZWwlMjB3cmlzdHdhdGNoJTIwbWVuJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTgzfDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "qlucmmJ-Cbw",
+        "alt": "A silver and black watch with a blue face.",
+        "raw": "https://images.unsplash.com/photo-1764243910471-4161c42fd29c?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8c2lsdmVyJTIwc3RlZWwlMjB3cmlzdHdhdGNoJTIwbWVuJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTgzfDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/accessories/card-holder-black.jpg",
+    "id": "MqOGVcLcJ3E",
+    "alt": "a hand holding a black leather wallet",
+    "alternates": [
+      {
+        "id": "qKyj3Yu18co",
+        "alt": "silver framed eyeglasses beside brown leather wallet",
+        "raw": "https://images.unsplash.com/photo-1586806828699-f06085feb6c5?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bGVhdGhlciUyMGNhcmQlMjBob2xkZXIlMjBtaW5pbWFsJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTg3fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "SvZQNh2--e0",
+        "alt": "a person holding a wallet in their hand",
+        "raw": "https://images.unsplash.com/photo-1678449484120-7bccd41043f3?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bGVhdGhlciUyMGNhcmQlMjBob2xkZXIlMjBtaW5pbWFsJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTg3fDA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "qHrkjKuDqdY",
+        "alt": "person holding black leather belt",
+        "raw": "https://images.unsplash.com/photo-1617427502466-5a138bbc2774?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fGxlYXRoZXIlMjBjYXJkJTIwaG9sZGVyJTIwbWluaW1hbCUyMHByb2R1Y3R8ZW58MHwxfHx8MTc4MTI2NDU4N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "e9DgtLTw8Bk",
+        "alt": "brown leather belt with silver buckle",
+        "raw": "https://images.unsplash.com/photo-1625789250576-9efae40f4689?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fGxlYXRoZXIlMjBjYXJkJTIwaG9sZGVyJTIwbWluaW1hbCUyMHByb2R1Y3R8ZW58MHwxfHx8MTc4MTI2NDU4N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "Tnjgyncg0sA",
+        "alt": "orange iphone case on white table",
+        "raw": "https://images.unsplash.com/photo-1611251852376-d3aaf1b0702e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bGVhdGhlciUyMGNhcmQlMjBob2xkZXIlMjBtaW5pbWFsJTIwcHJvZHVjdHxlbnwwfDF8fHwxNzgxMjY0NTg3fDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/outerwear/camel-overcoat.jpg",
+    "id": "-au3XMzfhro",
+    "alt": "man in brown coat standing",
+    "alternates": [
+      {
+        "id": "UnahTZnaR-w",
+        "alt": "A stylish man poses with sunglasses.",
+        "raw": "https://images.unsplash.com/photo-1743474346783-92ec409c6ccb?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMGNhbWVsJTIwb3ZlcmNvYXQlMjB3aW50ZXIlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1OTB8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "pb3K4IjqXm8",
+        "alt": "man wearing brown coat walking near black monument during daytime",
+        "raw": "https://images.unsplash.com/photo-1521045054832-67a1ed090d13?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGNhbWVsJTIwb3ZlcmNvYXQlMjB3aW50ZXIlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1OTB8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "2G8DfSAiD5g",
+        "alt": "man in brown coat standing near green leaf tree during daytime",
+        "raw": "https://images.unsplash.com/photo-1601921570063-28d2d3bf5b4d?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMGNhbWVsJTIwb3ZlcmNvYXQlMjB3aW50ZXIlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1OTB8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "CXiWks5VP5A",
+        "alt": "a man wearing sunglasses and a brown coat",
+        "raw": "https://images.unsplash.com/photo-1667842420679-718ed22a0b50?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bWFuJTIwd2VhcmluZyUyMGNhbWVsJTIwb3ZlcmNvYXQlMjB3aW50ZXIlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1OTB8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "iIjResyhhW0",
+        "alt": "man in brown coat and black pants",
+        "raw": "https://images.unsplash.com/photo-1619603364904-c0498317e145?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fG1hbiUyMHdlYXJpbmclMjBjYW1lbCUyMG92ZXJjb2F0JTIwd2ludGVyJTIwZmFzaGlvbnxlbnwwfDF8fHwxNzgxMjY0NTkwfDA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/outerwear/olive-bomber.jpg",
+    "id": "e2lIvjdqGjw",
+    "alt": "man in green dress shirt standing beside blue wall",
+    "alternates": [
+      {
+        "id": "WEtHkOWLe_A",
+        "alt": "man in black leather jacket and black pants standing on sidewalk during daytime",
+        "raw": "https://images.unsplash.com/photo-1612289538228-5d2d437c5187?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGdyZWVuJTIwYm9tYmVyJTIwamFja2V0JTIwc3RyZWV0JTIwc3R5bGV8ZW58MHwxfHx8MTc4MTI2NDU5M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "34GT_07ODI8",
+        "alt": "A man in a yellow jacket is walking down the street",
+        "raw": "https://images.unsplash.com/photo-1729980634231-20cc65430d23?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bWFuJTIwd2VhcmluZyUyMGdyZWVuJTIwYm9tYmVyJTIwamFja2V0JTIwc3RyZWV0JTIwc3R5bGV8ZW58MHwxfHx8MTc4MTI2NDU5M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "ad7Vkd3ea4g",
+        "alt": "man in gray jacket standing beside brick wall",
+        "raw": "https://images.unsplash.com/photo-1617791469869-21da47d82576?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwd2VhcmluZyUyMGdyZWVuJTIwYm9tYmVyJTIwamFja2V0JTIwc3RyZWV0JTIwc3R5bGV8ZW58MHwxfHx8MTc4MTI2NDU5M3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "sIDo1jv8oCo",
+        "alt": "man in black jacket and gray pants standing on road during daytime",
+        "raw": "https://images.unsplash.com/photo-1610587143931-ac96b8989b19?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fG1hbiUyMHdlYXJpbmclMjBncmVlbiUyMGJvbWJlciUyMGphY2tldCUyMHN0cmVldCUyMHN0eWxlfGVufDB8MXx8fDE3ODEyNjQ1OTN8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "TRrZ8J5WtBE",
+        "alt": "A man wearing a green jacket and tie",
+        "raw": "https://images.unsplash.com/photo-1729980634336-05fe2d059b5f?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBncmVlbiUyMGJvbWJlciUyMGphY2tldCUyMHN0cmVldCUyMHN0eWxlfGVufDB8MXx8fDE3ODEyNjQ1OTN8MA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/outerwear/blue-denim-jacket.jpg",
+    "id": "UNSj7BtOK0Q",
+    "alt": "man modeling denim jacket",
+    "alternates": [
+      {
+        "id": "OT2UXntkCUI",
+        "alt": "a man in a denim jacket adjusting his watch",
+        "raw": "https://images.unsplash.com/photo-1643858040625-3e806a9e5be3?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMGJsdWUlMjBkZW5pbSUyMGphY2tldCUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU5N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "VYuV0yZc5eI",
+        "alt": "man in blue denim jacket wearing black cap",
+        "raw": "https://images.unsplash.com/photo-1614693348454-1e0710d21c60?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8bWFuJTIwd2VhcmluZyUyMGJsdWUlMjBkZW5pbSUyMGphY2tldCUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU5N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "7PuQifdU248",
+        "alt": "man in blue denim jacket wearing black sunglasses",
+        "raw": "https://images.unsplash.com/photo-1615943168243-5b2503679e47?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bWFuJTIwd2VhcmluZyUyMGJsdWUlMjBkZW5pbSUyMGphY2tldCUyMGZhc2hpb258ZW58MHwxfHx8MTc4MTI2NDU5N3ww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "v_jxeameRIg",
+        "alt": "person wearing blue denim sheepskin jacket",
+        "raw": "https://images.unsplash.com/photo-1521073535089-c3fe0eae04cc?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fG1hbiUyMHdlYXJpbmclMjBibHVlJTIwZGVuaW0lMjBqYWNrZXQlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1OTd8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "M3-eH4_UNpQ",
+        "alt": "woman in blue denim jacket and blue denim jeans standing on road during daytime",
+        "raw": "https://images.unsplash.com/photo-1605192554106-d549b1b975cd?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBibHVlJTIwZGVuaW0lMjBqYWNrZXQlMjBmYXNoaW9ufGVufDB8MXx8fDE3ODEyNjQ1OTd8MA&ixlib=rb-4.1.0"
+      }
+    ]
+  },
+  {
+    "file": "products/outerwear/navy-db-blazer.jpg",
+    "id": "ikjvPfC3pbI",
+    "alt": "man in black suit jacket holding brown leather bag",
+    "alternates": [
+      {
+        "id": "hDANeGXvWRw",
+        "alt": "man in blue suit jacket and white dress shirt",
+        "raw": "https://images.unsplash.com/photo-1603394151492-5e9b974b090b?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBibGF6ZXIlMjBzdWl0JTIwamFja2V0JTIwdGFpbG9yZWR8ZW58MHwxfHx8MTc4MTI2NDYwMHww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "JQ2D4I-2eyw",
+        "alt": "man in suit jacket sitting down",
+        "raw": "https://images.unsplash.com/flagged/photo-1553642618-de0381320ff3?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8bWFuJTIwd2VhcmluZyUyMG5hdnklMjBibGF6ZXIlMjBzdWl0JTIwamFja2V0JTIwdGFpbG9yZWR8ZW58MHwxfHx8MTc4MTI2NDYwMHww&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "4oDG18btbWI",
+        "alt": "man in blue suit jacket wearing gold round analog watch",
+        "raw": "https://images.unsplash.com/photo-1603394141103-0745b722a7dd?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fG1hbiUyMHdlYXJpbmclMjBuYXZ5JTIwYmxhemVyJTIwc3VpdCUyMGphY2tldCUyMHRhaWxvcmVkfGVufDB8MXx8fDE3ODEyNjQ2MDB8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "xpcnbdxH19o",
+        "alt": "man in black suit jacket",
+        "raw": "https://images.unsplash.com/photo-1613379171002-3610ae01cf4a?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTR8fG1hbiUyMHdlYXJpbmclMjBuYXZ5JTIwYmxhemVyJTIwc3VpdCUyMGphY2tldCUyMHRhaWxvcmVkfGVufDB8MXx8fDE3ODEyNjQ2MDB8MA&ixlib=rb-4.1.0"
+      },
+      {
+        "id": "BZxFaUAtYEM",
+        "alt": "man in black suit jacket and gray dress pants",
+        "raw": "https://images.unsplash.com/photo-1585699324657-7e5ba0748b89?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fG1hbiUyMHdlYXJpbmclMjBuYXZ5JTIwYmxhemVyJTIwc3VpdCUyMGphY2tldCUyMHRhaWxvcmVkfGVufDB8MXx8fDE3ODEyNjQ2MDB8MA&ixlib=rb-4.1.0"
+      }
+    ]
+  }
+]

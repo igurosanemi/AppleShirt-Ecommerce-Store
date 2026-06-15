@@ -87,7 +87,7 @@ PRODUCTS = [
         "price": 8999,
         "stock": 3,  # low stock — triggers warning
         "category_slug": "shirts",
-        "image_url": "/images/products/shirts/classic-white-oxford.jpg",
+        "image_url": "/images/products/shirts/midnight-black-oxford.jpg",
     },
     {
         "name": "Washed Grey Chambray Shirt",
@@ -100,7 +100,7 @@ PRODUCTS = [
         "price": 6999,
         "stock": 0,  # out of stock — tests OOS display
         "category_slug": "shirts",
-        "image_url": "/images/products/shirts/linen-short-sleeve.jpg",
+        "image_url": "/images/products/shirts/grey-chambray.jpg",
     },
     # ── Trousers ───────────────────────────────────────────────────────────────
     {
@@ -153,7 +153,7 @@ PRODUCTS = [
         "price": 7499,
         "stock": 2,  # low stock
         "category_slug": "trousers",
-        "image_url": "/images/products/trousers/slim-khaki-chinos.jpg",
+        "image_url": "/images/products/trousers/stone-linen-trousers.jpg",
     },
     # ── Accessories ────────────────────────────────────────────────────────────
     {
@@ -219,7 +219,7 @@ PRODUCTS = [
         "price": 2499,
         "stock": 0,  # out of stock
         "category_slug": "accessories",
-        "image_url": "/images/products/accessories/bifold-wallet-black.jpg",
+        "image_url": "/images/products/accessories/card-holder-black.jpg",
     },
     # ── Outerwear ──────────────────────────────────────────────────────────────
     {
@@ -272,7 +272,7 @@ PRODUCTS = [
         "price": 18999,
         "stock": 4,  # low stock
         "category_slug": "outerwear",
-        "image_url": "/images/products/outerwear/camel-overcoat.jpg",
+        "image_url": "/images/products/outerwear/navy-db-blazer.jpg",
     },
 ]
 
